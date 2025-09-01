@@ -1,1 +1,107 @@
 Java:
+
+	Is an OOP language
+	
+JDK: Java Development Kit (tools - compile, run etc.)
+JRE: Java Runtime Environment (provides the environment to run Java app. contains some libraries.) 
+Windows O/S, Mac, Linux
+JVM: Java Virtual Machine (it allows to run Java app on any platform - o/s) - a concept
+
+Step-1: compilation (static)
+-----------------------------
+App.java (source code) -> compiler (javac) -> App.class (byte-code - a type of intermediate language code)
+Platform neutral code that is portable to and executable in any machine.
+
+Step-2: (run)
+----------------
+use java.exe which provides the runtime environment.
+App.class -> Just-In-Time compiler (part of runtime) -> machine language/level code (executable) -> execution begins from "main" method.
+
+JIT will first convert the main method byte code to executable code ONLY and then begin execution from main method.
+
+now, if during execution the runtime finds out/comes across another method that you are calling, then that method code will be JIT compiled (byte code will be converted to machine language code). if you even call the same method repeatedly, the same method will NOT be JIT compiled repeatedly.
+This improves the performance of the application, as the application's entire byte code is NOT converted to machine language code at one go.
+
+
+Features:
+------------------
+Data Types
+Operators
+Control Flow statements
+
+Number -> Wrapper class
+
+primitive types:
+byte, short, int, long 
+float, double
+
+int x = 100;
+Integer y = x; //boxing (converting primitive type into reference type)
+int z = y.intValue(); //unboxing (converting the reference type into primitive type)
+
+Number -> [abstract class]
+	Byte (byte)
+	Short (short)
+	Integer (int)
+	Long (long)
+
+	Double (double)
+	Float (float)
+
+Character (char)
+Boolean (boolean)
+
+non-primitive types (reference types)
+String (string -> not there)
+class, interface
+
+new ArrayList<Integer>();
+
+++, --
+
+*=. +=, -=, /=, =
+
+>, <, >=, <=, ==, !=
+
+
+#include<iostream.h>
+
+//import java.lang; (default base package)
+import java.io.PrintStream;
+
+
+PrintStream: 
+	- The "standard" output stream.
+	- This stream is already open and ready to accept output data.
+        - Typically this stream corresponds to display output or another output destination specified by the host environment or user.
+        - The encoding used in the conversion from characters to bytes is equivalent to "stdout.encoding"
+        PrintStream ps = System.out;
+
+naming convention:
+-----------------------
+method name: 
+	- camel casing (first letter of first word in lower case but first letter of subsequent words in upper case in multi-word name)
+	- should sound like "verb"
+
+ex: doSomething()
+
+variable name: 
+	- lowercase or camel case 
+	ex: mydata/myData
+	- no digits, special character
+	- like noun
+
+
+
+best practices:
+------------------------
+always use a method to do exactly one job
+	- increases modularity
+	- increase readability
+	- increase reusability
+	- helps you to debug code easily
+
+
+
+
+	
