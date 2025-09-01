@@ -95,7 +95,7 @@ variable name:
 
 best practices:
 ------------------------
-always use a method to do exactly one job
+always use separate methods/classes to do exactly one job
 	- increases modularity
 	- increase readability
 	- increase reusability

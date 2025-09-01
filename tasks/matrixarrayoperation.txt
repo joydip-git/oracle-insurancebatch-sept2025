@@ -1,0 +1,22 @@
+matrix array: n*n
+our app: where n%2 != 0
+example: 3*3, 5*5, 7*7 etc.
+
+two dimensional matrix array (odd)
+[
+	60	23	31
+	51	79	41
+	84	93	14
+]
+
+=>
+single dimensional array
+0	1	2	3	4	5	6	7	8	
+---------------------------------------------------------------------------------
+93	79	51	31	14	23	41	60	84
+
+lowest value of matrix array in the middle
+next highest on the right side of the middle position
+next highest on the left side of the middle position
+R -> L
+

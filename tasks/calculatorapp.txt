@@ -27,7 +27,7 @@ enter value: 3
 
 result of add operation is 15
 
-like to continue[y/Y/N/N]: y
+like to continue[y/Y/n/N]: y
 
 repeat of previous steps...
 
