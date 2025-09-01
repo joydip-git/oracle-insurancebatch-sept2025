@@ -8,9 +8,21 @@ two dimensional matrix array (odd)
 	51	79	41
 	84	93	14
 ]
+=> [arrangeElements] => 
+=> [copyElementsToArray] =>
+single dimensional array (single before sorting)
+0	1	2	3	4	5	6	7	8	
+---------------------------------------------------------------------------------
+60	23	31	51	79	41	84	93	14
 
-=>
-single dimensional array
+=> [arrangeElements] => 
+single dimensional array (single after sorting)
+0	1	2	3	4	5	6	7	8	
+---------------------------------------------------------------------------------
+14	23	31	41	51	60	79	84	93
+
+result:
+
 0	1	2	3	4	5	6	7	8	
 ---------------------------------------------------------------------------------
 93	79	51	31	14	23	41	60	84
