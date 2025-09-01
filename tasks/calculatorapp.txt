@@ -1,0 +1,35 @@
+create a Java application which will be used for calculation
+functionalities:
+	a. add two numbers
+	b. subtract a number from another
+	c. multiply a number by another
+	d. divide a number by another
+UI:
+--------------
+a. menu should be displayed to the user of the application for all the functionalities
+b. an user should be asked about the choice of operation
+c. an user should be asked then about the two numbers
+d. corresponding operation should be invoked based on user choice with given two values
+e. result should be printed with the operation name
+f. after one round, user should be asked whether to continue or not
+
+
+------MENU------
+1. add
+2. subtract
+3. multiply
+4. divide
+
+enter choice[1/2/3/4]: 1
+
+enter value: 12
+enter value: 3
+
+result of add operation is 15
+
+like to continue[y/Y/N/N]: y
+
+repeat of previous steps...
+
+
+
