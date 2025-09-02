@@ -1,5 +1,27 @@
 Class and object:
 --------------------------
+create table contact(
+	id int primary key not null,
+	name varchar2(50) not null,
+	mobileno number(10),
+	emailed varchar2(50),
+	location varchar2(50)
+)
+
+insert into contact() values()
+
+class Contact{
+	int id;
+	String name;
+	long mobileNo;
+	String emailId;
+	String location;
+}
+
+Contact joydipContact = new Contact();
+joydipContact.id=100;
+
+
 class is template/blue-print which contains data (fields) and functionalities (methods) 
 it represents a structure of real time entities
 
@@ -44,34 +66,68 @@ getter/setter:
 	a pair of methods
 	getter: returns the value of a data member (private/protected)
 	setter: assigns/sets the value to a data member (private/protected)
-a. if you want to assign the values to the data members after the object is created (called default ctor)
+a. if you want to assign the values to the data members after the object is created (called default constructor)
 b. if you want to access a value of a data member (since constructor does not return anything)
 c. if you want to update value of a data member (since constructor can't be used to update value of data members as the call to the constructor is done while creating an instance. constructor is never called after the instance is created)
 
+inheritance:
+--------------------------------
+it helps you achieve reusability by avoiding redundancy while creating classes in OOP language
+1. single level inheritance
+2. Multi level inheritance
+3. Multiple inheritance 
+Note: 
+a. Java does not support multiple inheritance of class
+b. Every class in Java by default inherits from Object class hence the default constructor of this class is always called. If its multi level inheritance, then the top level base class inherits from Object class.
+
+Object <- A <- B <- C
+
+Super keyword:
+----------------------------
+when you create an instance of a child class, no matter whichever constructor of the child class (default/parameterized) you call, runtime always first calls the default constructor of the base class by default.
+you can instruct runtime to call other (parameterized) constructor of the base class, from the constructors of the child class, using "super" keyword
+super keyword indicates the immediate base/super class of the child class (current class)
+this keyword can be used to invoke/access immediate base class's accessible member (such as constructor, method, getter/setter) etc. from the child class
+
+if you want to call the base class constructor from child class constructor use 
+	- super() to invoke default constructor
+	- super(...) to invoke parameterized constructor
+
+Note: call the super class constructor should be the first line in the child class constructor
+
+
+if you want to call the base class other methods from child class methods use 
+	- super.methodName() to base class method
+
+
+A <- B <- C
+for C, B is the immediate base class
+for B, A is the immediate base class
+
+class Device (extends Object)
+	modelName, price, make, year
+
+class Mobile extends Device
+	 isFlip 
+
+class Laptop extends Device
+	ssdAvailable, hddAvailable
+
+
+
 name, mobileno, email id, location
 
-create table contact(
-	id int primary key not null,
-	name varchar2(50) not null,
-	mobileno number(10),
-	emailed varchar2(50),
-	location varchar2(50)
-)
-
-insert into contact() values()
-
-class Contact{
-	int id;
-	String name;
-	long mobileNo;
-	String emailId;
-	String location;
-}
-
-Contact joydipContact = new Contact();
-joydipContact.id=100;
 
 Stack memory: for [local variables + arguments (parameters)] of a method
+
+
+Casting of reference types:
+-------------------------------------
+
+
+
+
+
 
 
 

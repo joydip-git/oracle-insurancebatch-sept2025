@@ -1,0 +1,10 @@
+public class App {
+    public static void main(String[] args) throws Exception {
+
+        Mobile onePlusMobile = new Mobile("One Plus Flip", "One Plus", 120000, 2022, true);
+        System.out.println(onePlusMobile.getModelName());
+
+        Laptop dellLaptop = new Laptop("Dell XPS 13", "Dell", 150000, 2021, true, false);
+        System.out.println(dellLaptop.getModelName());
+    }
+}

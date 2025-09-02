@@ -4,20 +4,17 @@ public class Contact {
     private String location;
     private String emailid;
     private long mobileNo;
-    // String company;
 
-    // public Contact() {
-    // }
     public Contact(int id) {
         this.id = id;
     }
 
-    public Contact(int id, String name, String location, String emailId, long mobileNo) {
+    public Contact(String emailid, int id, String location, long mobileNo, String name) {
+        this.emailid = emailid;
         this.id = id;
-        this.name = name;
         this.location = location;
-        this.emailid = emailId;
         this.mobileNo = mobileNo;
+        this.name = name;
     }
 
     public int getId() {
@@ -55,4 +52,5 @@ public class Contact {
     public void setMobileNo(long mobileNo) {
         this.mobileNo = mobileNo;
     }
+
 }
