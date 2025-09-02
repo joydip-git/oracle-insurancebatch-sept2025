@@ -1,0 +1,78 @@
+Class and object:
+--------------------------
+class is template/blue-print which contains data (fields) and functionalities (methods) 
+it represents a structure of real time entities
+
+Contact c = new Contact(....);
+when the code execution starts from main method
+1. runtime will understand that a new object has to be created because "new" keyword has been used
+2. then the runtime investigates the Contact class (written after new keyword) and will find out that there are some data members
+3. the runtime will allocate memory blocks for those data members in the Heap memory block
+4. after that the constructor (default/parameterized) will be invoked (which you have used in your code) and values (default/user values) will be placed in all the memory blocks (assigning values to the data members)
+5. after that the initial address of the memory block (from where the data member memory block allocation started) will be returned  by runtime and will be stored in/assigned to the local variable (c) on the left side of the expression (=new Contact(...))
+
+Note: the variable in the stack must be of type class as the variable will store the reference/address of the object present in the heap. That's why the variable is know as "reference type variable".
+
+Constructor:
+-----------------------
+	a special method of the class used to initialize the data members with value during the creation of an instance based on a blue-print/schema (class) by runtime
+	it is a supplier of values for the data members of a class which runtime invokes after allocating memory blocks in the heap memory for object data to be stored
+
+	constructor method should not have any return type
+	constructor name should be same as that of the class
+	constructor is called "during" the creation of the object
+	
+	default constructor: initializes data members with default value (0 for numeric, false for Boolean and null for reference types, like String)
+	parameterized constructor: initializes data members with the values passed to this constructor
+
+access specifiers of the class members:
+---------------------------------------------
+	private: the members can ONLY be accessed within the class code body
+	protected: the members can be accessed within the class code body and also within the child class code body ONLY
+	public (default): the members can be accessed within the class code body, within the child class code body, through the reference variable
+
+data abstraction:
+-------------------------
+	hide the data members (the memory block names in which object data will be stored) of the class by using private/protected access specifiers, so that no one from outside the class can access them directly and manipulate the data as stored in them.
+
+encapsulation:
+---------------------------
+	writing the data members (fields) and the functionalities (methods) within the class body and thus hide the actual members and their implementation from outside the class
+	
+getter/setter:
+----------------------------
+	a pair of methods
+	getter: returns the value of a data member (private/protected)
+	setter: assigns/sets the value to a data member (private/protected)
+a. if you want to assign the values to the data members after the object is created (called default ctor)
+b. if you want to access a value of a data member (since constructor does not return anything)
+c. if you want to update value of a data member (since constructor can't be used to update value of data members as the call to the constructor is done while creating an instance. constructor is never called after the instance is created)
+
+name, mobileno, email id, location
+
+create table contact(
+	id int primary key not null,
+	name varchar2(50) not null,
+	mobileno number(10),
+	emailed varchar2(50),
+	location varchar2(50)
+)
+
+insert into contact() values()
+
+class Contact{
+	int id;
+	String name;
+	long mobileNo;
+	String emailId;
+	String location;
+}
+
+Contact joydipContact = new Contact();
+joydipContact.id=100;
+
+Stack memory: for [local variables + arguments (parameters)] of a method
+
+
+
+
