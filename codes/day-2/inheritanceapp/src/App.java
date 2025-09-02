@@ -16,6 +16,7 @@ public class App {
         System.out.println(device.getModelName());
         if (device instanceof Mobile) {
             // down-catsing
+            
             Mobile mobile = (Mobile) device;
             System.out.println("Is flip mobile: " + mobile.getIsFlip());
         }

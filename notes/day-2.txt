@@ -147,14 +147,29 @@ Device onePlusMobile = new Mobile("One Plus Flip", "One Plus", 120000, 2022, tru
 //Down-casting (Explicit)
 Mobile mobile = (Mobile)onePlusMobile;
 
+compilation
+
+source code (java) -> java compiler -> byte code
+
+run
+byte code -> JIT compiler -> executable code -> execution begins from main method
 
 polymorphism:
 -------------------------
 multiple forms of method or operator
 
-1. method
+static/compile-time polymorphism:
+------------------------------------------
 
-1.a. method overloading: 
+during compilation time, java compiler decides which method will be invoked while compiling the method invocation code.
+
+this way the "method call line" gets "bound" to the exact "method" -> binding
+
+runtime simply follows that instruction and invokes the exact method, when the method call line reaches execution point
+
+
+1. method: [method overloading]
+---------------------------------------
 methods with same name, but with a difference in parameter list, are doing different job.
 you can write multiple methods with the same name inside a single class (no inheritance involved) by having the difference in the argument/parameter list
 	a. number of parameters are different
@@ -162,7 +177,25 @@ you can write multiple methods with the same name inside a single class (no inhe
 	c. order or the position of the parameters are different
 with respect to constructor, it is known as constructor overloading
 
-1.b. method overriding:
+2. operator: [operator overloading]
+------------------------------------------
+same operator does different job based on the data type of the operand
++ -> String, String -> concatenate
+
+'hello' + 'world' => 'hello'.concat('world')
+
+dynamic polymorphism:
+--------------------------------
+involves inheritance (minimum of two classes, one base class and at least one child class)
+where base and child class will have signature-wise identical method but with different implementation/code
+here java compiler by default can't decide exactly which method to be called until and unless during runtime an instance has been created.
+
+A print() -> name
+B print() -> name & data
+
+
+
+
 
 	
 
