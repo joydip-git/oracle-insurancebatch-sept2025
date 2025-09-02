@@ -123,6 +123,37 @@ Stack memory: for [local variables + arguments (parameters)] of a method
 
 Casting of reference types:
 -------------------------------------
+when you create an object/instance of a child class, you can store the reference of that child class into
+	a. reference variable of child class itself
+ Mobile onePlusMobile = new Mobile("One Plus Flip", "One Plus", 120000, 2022, true);
+
+	b. reference variable of base class also
+ Device onePlusMobile = new Mobile("One Plus Flip", "One Plus", 120000, 2022, true);
+	Note: 
+	1. this is called up-casting (storing the reference of a child class instance in a reference variable of base class)
+	2. in case of up-casting, using the base class reference variable, you can access the base class members (which are inherited into the child class) as present in the child class ONLY, but can't access the explicit members of the child class
+
+	onePlusMobile.getModelName(); <- can access this getter (inherited member of the base class present in the child class)
+	onePlusMobile.getIsFlip(); <- can't access this getter (explicit member of the child class)
+	3. remember, by doing up-casting you didn't create any instance of the base class (Device), you just stored the reference of the child class (Mobile) object in the reference variable of the base class (Device)
+
+polymorphism:
+-------------------------
+multiple forms of method or operator
+
+1. method
+
+1.a. method overloading: 
+methods with same name, but with a difference in parameter list, are doing different job.
+you can write multiple methods with the same name inside a single class (no inheritance involved) by having the difference in the argument/parameter list
+	a. number of parameters are different
+	b. data type of parameters are different
+	c. order or the position of the parameters are different
+with respect to constructor, it is known as constructor overloading
+
+1.b. method overriding:
+
+	
 
 
 

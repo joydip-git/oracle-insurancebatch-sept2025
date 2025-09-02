@@ -9,7 +9,7 @@ public class Mobile extends Device {
         this.isFlip = isFlip;
     }
 
-    public boolean isIsFlip() {
+    public boolean getIsFlip() {
         return isFlip;
     }
 

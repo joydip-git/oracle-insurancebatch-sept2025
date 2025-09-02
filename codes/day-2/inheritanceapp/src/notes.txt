@@ -1,0 +1,15 @@
+ Mobile onePlusMobile = new Mobile("One Plus Flip", "One Plus", 120000, 2022,
+                true);
+        // possible
+        // System.out.println(onePlusMobile.getModelName());
+        // System.out.println(onePlusMobile.getIsFlip());
+
+        Device onePlusMobile = new Mobile("One Plus Flip", "One Plus", 120000, 2022,
+        // true);
+        // possible
+        System.out.println(onePlusMobile.getModelName());
+        // not possible
+        // System.out.println(onePlusMobile.getIsFlip());
+
+        Laptop dellLaptop = new Laptop("Dell XPS 13", "Dell", 150000, 2021, true, false);
+        System.out.println(dellLaptop.getModelName());
