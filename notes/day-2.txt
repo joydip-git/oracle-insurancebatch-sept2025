@@ -137,6 +137,17 @@ when you create an object/instance of a child class, you can store the reference
 	onePlusMobile.getIsFlip(); <- can't access this getter (explicit member of the child class)
 	3. remember, by doing up-casting you didn't create any instance of the base class (Device), you just stored the reference of the child class (Mobile) object in the reference variable of the base class (Device)
 
+down-casting:
+--------------------
+copying the reference of a child class instance, which was stored in base class reference variable, back to a child class reference variable again.
+
+//up-casting (implicit)
+Device onePlusMobile = new Mobile("One Plus Flip", "One Plus", 120000, 2022, true);
+
+//Down-casting (Explicit)
+Mobile mobile = (Mobile)onePlusMobile;
+
+
 polymorphism:
 -------------------------
 multiple forms of method or operator

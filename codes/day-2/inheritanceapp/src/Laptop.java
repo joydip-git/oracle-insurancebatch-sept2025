@@ -12,7 +12,7 @@ public class Laptop extends Device {
         this.isSSDAvailable = isSSDAvailable;
     }
 
-    public boolean isIsHDDAvailable() {
+    public boolean getIsHDDAvailable() {
         return isHDDAvailable;
     }
 
@@ -20,7 +20,7 @@ public class Laptop extends Device {
         this.isHDDAvailable = isHDDAvailable;
     }
 
-    public boolean isIsSSDAvailable() {
+    public boolean getIsSSDAvailable() {
         return isSSDAvailable;
     }
 

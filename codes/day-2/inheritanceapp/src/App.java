@@ -14,6 +14,14 @@ public class App {
     // (Laptop/Mobile/...)
     static void printDeviceInfo(Device device) {
         System.out.println(device.getModelName());
+        if (device instanceof Mobile) {
+            // down-catsing
+            Mobile mobile = (Mobile) device;
+            System.out.println("Is flip mobile: " + mobile.getIsFlip());
+        }
+        if (device instanceof Laptop laptop) {
+            System.out.println("Is SSD available: " + laptop.getIsSSDAvailable());
+        }
     }
     // static void printDeviceInfo(Mobile mobile) {
     // System.out.println(mobile.getModelName());
