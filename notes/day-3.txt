@@ -1,0 +1,29 @@
+abstract method
+	a method which has no code (implementation), just declaration
+	an abstract method/getter/setter must be declared with abstract keyword
+	
+	- public abstract String printInfo();
+	- public abstract String getName();
+	- public abstract void setName(String name);
+
+
+abstract class
+	it is a class with at least one abstract method/getter/setter
+	the class having an abstract member must be declared with abstract keyword
+	an instance of an abstract class can not be created
+	an abstract class can have explicit constructors, data members, other non-abstract methods/getter/setter
+	any class (child) inheriting from an abstract base class MUST override/implement the abstract methods/getters/setters. otherwise that child class also becomes an abstract class and has to be declared with an abstract keyword.
+
+
+Employee -> 
+	void calculateSalary(){} 
+Developer -> 
+	@override 
+	void calculateSalary(){}
+
+abstract class can be used like a base template with abstract methods, that must be implemented in their own way in every child class
+
+in you s/w, if you have many classes of similar nature and you want they should have common methods with different implementation, to make it sure the classes follow the expectation, you can create an abstract class with those abstract methods and make the child classes inherit them.
+
+
+interface
