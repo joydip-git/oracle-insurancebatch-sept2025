@@ -38,6 +38,37 @@ interface:
 	a class can implement more than one interface
 
 in you s/w, if you have many classes of similar nature and you want them to have ONLY common methods with different implementation, but no common data members, then to make it sure the classes follow the expectation, you can create an interface with ONLY those abstract methods and make the child classes implement them.
+
+final keyword:
+-------------------------
+when used with class -> the class can't be inherited
+
+when used with method -> the method can't be overridden
+
+when used with data member -> makes the data member as "read-only", which should be assigned either immediately (while declaring) or by constructor ONLY. No other method can be used to initialize that "read-only" data member. But, if this data member already is assigned a value while declaring, then even constructor can't be used to assign value to it.
+
+when used with data member along with static keyword -> it makes data member "constant", whose value can ONLY be assigned when declared and can't be changed any further
+
+when used with local variable -> it mnakes the local variable of the method "constant", whose value once assigned can't be changed
 	
+Object:
+--------------
+Class<?> getClass(); [this is a final method and can't be overidden in child class]
+
+these following methods can be overriden in child class:
+int hashCode();
+boolean equals(Object obj);
+String toString();
+
+
+JVM has Class loader, whose job is to load metadata (information) of any class in the runtime, before it can be used, such as before creating instance etc.
+
+Instances of the class "Class" represent classes and interfaces in a running Java application
+Class<T> -> Class loader of JVM loads definition/information/metadata of any  data type(class/interface) from the byte code and stores that information in inside an instance of class "Class", created by runtime (JVM itself)
+
+Class<B> => instance of Class storing information of B class
+
+
+
 
 	

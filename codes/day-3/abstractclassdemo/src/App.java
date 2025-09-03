@@ -18,7 +18,10 @@ public class App {
         String data = reader.readData();
 
         // print data
-        System.out.println(data);
+        // Class Information
+        Class<?> clsInfo = reader.getClass();
+        String clsName = clsInfo.getSimpleName();
+        System.out.println("Data fetched by " + clsName + " is " + data);
 
         scanner.close();
     }
