@@ -13,7 +13,7 @@ abstract class
 	an instance of an abstract class can not be created
 	an abstract class can have explicit constructors, data members, other non-abstract methods/getter/setter
 	any class (child) inheriting from an abstract base class MUST override/implement the abstract methods/getters/setters. otherwise that child class also becomes an abstract class and has to be declared with an abstract keyword.
-
+	a child class can't inherit from more than one abstract class
 
 Employee -> 
 	void calculateSalary(){} 
@@ -23,7 +23,21 @@ Developer ->
 
 abstract class can be used like a base template with abstract methods, that must be implemented in their own way in every child class
 
-in you s/w, if you have many classes of similar nature and you want they should have common methods with different implementation, to make it sure the classes follow the expectation, you can create an abstract class with those abstract methods and make the child classes inherit them.
+in you s/w, if you have many classes of similar nature and you want them to have common methods as well common data members, but some of the methods have no implementation, rather child classes should provide different implementation, then to make it sure the classes follow the expectation, you can create an abstract class with those abstract methods and make the child classes inherit them.
 
 
-interface
+interface:
+	a pure abstract class
+	it can have ONLY abstract methods/getters/setters
+	an interface can't have any explicit constructors, data members, other non-abstract methods/getter/setter (except default methods)
+	declare an interface with "interface" keyword
+	no need to use abstract keyword separately with either interface or its abstract members, since they are by default abstract
+	an instance of an interface can not be created	
+	any class (child) implementing (inheriting) an interface, MUST override/implement the abstract methods/getters/setters. otherwise that child class also becomes an abstract class and has to be declared with an abstract keyword.
+	an interface can be inherited into another interface
+	a class can implement more than one interface
+
+in you s/w, if you have many classes of similar nature and you want them to have ONLY common methods with different implementation, but no common data members, then to make it sure the classes follow the expectation, you can create an interface with ONLY those abstract methods and make the child classes implement them.
+	
+
+	
