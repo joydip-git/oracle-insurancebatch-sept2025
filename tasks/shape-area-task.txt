@@ -13,7 +13,7 @@ in the Java application:
 1. create classes for those two types
 2. they must have necessary default and parameterized constructors, data members, getter/setters and methods
 
-Hint: create also a base class/interface as you feel necessary
+Hint: create also a base class (concrete/abstract)/interface as you feel necessary
 
 3. in main method create objects of these two types
 	a. print menu for user so that user can choose which type of shape object to be created
