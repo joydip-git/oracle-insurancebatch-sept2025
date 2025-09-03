@@ -68,6 +68,17 @@ Class<T> -> Class loader of JVM loads definition/information/metadata of any  da
 
 Class<B> => instance of Class storing information of B class
 
+Generic:
+--------------
+E => Element
+T => Type
+K => Key
+V => Value
+
+
+Collections
+---------------------
+
 
 
 
