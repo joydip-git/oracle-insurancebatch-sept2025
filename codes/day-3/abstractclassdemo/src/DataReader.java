@@ -1,4 +1,4 @@
-public abstract class DataReader {
+public abstract class DataReader implements Reader, SourcePath {
     private String sourcePath;
 
     public DataReader() {
@@ -9,13 +9,16 @@ public abstract class DataReader {
         this.sourcePath = sourcePath;
     }
 
-    public String getSourcePath() {
+    @Override
+    public abstract String readData();
+
+    @Override
+    public void setPath(String path) {
+        this.sourcePath = path;
+    }
+
+    @Override
+    public String getPath() {
         return sourcePath;
     }
-
-    public void setSourcePath(String sourcePath) {
-        this.sourcePath = sourcePath;
-    }
-
-    public abstract String readData();
 }
