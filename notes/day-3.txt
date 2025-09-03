@@ -78,7 +78,25 @@ V => Value
 
 Collections
 ---------------------
+array limitations:
+	fixed size
+	delete elements size doe not decrease
+	add elements equal to the length
 
+good:
+	mention the data type
+
+
+Utility class: Collections
+
+List (interface)
+	ArrayList
+	Vector
+		Stack
+	LinkedList
+Queue
+Set
+Map
 
 
 

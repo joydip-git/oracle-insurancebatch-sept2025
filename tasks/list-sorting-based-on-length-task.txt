@@ -1,0 +1,3 @@
+Create a Java application where in main method, you will
+	- create an List of String to add some sentences
+	- sort the list by the length of those sentences
