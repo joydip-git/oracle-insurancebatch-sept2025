@@ -1,6 +1,10 @@
 public class DataReaderFactory {
     private int choice = 1;
 
+    public DataReaderFactory() {
+
+    }
+
     public DataReaderFactory(int choice) {
         this.choice = choice;
     }
@@ -14,6 +18,10 @@ public class DataReaderFactory {
 
             case 2:
                 reader = new OracleDbDataReader(path);
+                break;
+
+            case 3:
+                reader = new JsonDataReader(path);
                 break;
 
             default:
