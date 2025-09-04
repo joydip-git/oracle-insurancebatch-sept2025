@@ -1,0 +1,17 @@
+Change your application, by switching from List<Product> to Set<Product> where products will be sorted based on choice.
+
+Product class following members:
+	data: id, name, price, description
+	getters/setters: for all data members
+	constructors: default and parameterized
+
+in main method-
+	a. create a TreeSet<Product>
+	b. add some sample product objects (at least 3)
+	c. sort them by choice
+		I. print the sort menu
+			1. sort by id
+			2. sort by name
+			3. sort by price
+		II. accept the choice
+	d. also the products must be sorted by default by id
