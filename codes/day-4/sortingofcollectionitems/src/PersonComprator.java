@@ -23,7 +23,8 @@ public class PersonComprator implements Comparator<Person> {
         // }
         System.out.println("in compare method in PersonComparator");
         return switch (sortChoice) {
-            case 1 -> o1.getId() - o2.getId();
+            // case 1 -> o1.getId() - o2.getId();
+            case 1 -> Integer.compare(o1.getId(), o2.getId());
             case 2 -> o1.getName().compareTo(o2.getName());
             default -> 0;
         };
