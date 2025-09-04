@@ -1,0 +1,30 @@
+create a Java application to display all the words from a sentence in sorted manner (sorted alphabetically) and how many times each word occurred in the sentence
+
+
+	sample i/p:
+	enter a sentence: I teach Java. I am working on Java for last 20 years, since 2005. 
+
+	- sample o/p:
+		am: 1
+		for: 1
+		Java: 2
+		I: 2
+		.....
+
+please write the logic of finding out words and their count in a separate method which will be called from main method
+
+
+
+	- ask user to enter a sentence in main method
+	- pass the sentence as an argument to the other method from main method by calling the other method
+	- from that other method return a collection which contains the words and their counts
+	- in the main method store the return value of the other method in a variable of same type
+	- iterate through the collection and display the words and their respective counts in main method
+
+Note: do not use any input/output statement in that other method, Input/output statements are allowed ONLY in the main method.
+
+sample method name: 
+	[RT] findWordsAndTheirFrequency(String sentence)
+
+
+

@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;
-//import java.util.Comparator;
+import java.util.Comparator;
 
 public class App {
     static void primitiveSorting() {
@@ -79,7 +79,7 @@ public class App {
         people.add(joydipPerson);
         people.add(anilPerson);
 
-        //Collections.sort(people);
+        // Collections.sort(people);
 
         System.out.println("1. sort by id\n2. sort by name");
         Scanner scanner = new Scanner(System.in);
@@ -106,6 +106,28 @@ public class App {
         // primitiveSorting();
         // comparableAndComparator();
         // peopleManualSorting();
-        peopleSorting();
+        // peopleSorting();
+        sortStringsBasedOnLength();
+    }
+
+    static void sortStringsBasedOnLength() {
+        // local inner class (written and scoped only inside the declaring method)
+        // class StringComparator implements Comparator<String> {
+        //     @Override
+        //     public int compare(String o1, String o2) {
+        //         return o1.length() - o2.length();
+        //     }
+        // }
+
+        List<String> sentences = new ArrayList<>();
+        sentences.add("Ny name is joydip");
+        sentences.add("I teach Java");
+        sentences.add("I live in Bangalore");
+
+        StringComparator comp = new StringComparator();
+        sentences.sort(comp);
+        for (String sentence : sentences) {
+            System.out.println(sentence + ":" + sentence.length());
+        }
     }
 }

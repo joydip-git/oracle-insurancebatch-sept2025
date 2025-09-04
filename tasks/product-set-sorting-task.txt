@@ -17,3 +17,20 @@ in main method-
 			3. sort by price
 		II. accept the choice
 	d. also the products must be sorted by default by id
+
+class HashMap<K,V> implements Map<K,V>{
+	static class Node<K,V> implements Map.Entry<K,V>{
+	}
+
+	private Set<Map.Entry<K,V>> entries = new HashSet<Node<K,V>>();
+
+	add(K key, V value){
+		Node<K,V> node = new Node<K,V>(key,value);
+		entries.add(node);
+	}
+
+	Set<Map.Entry<K,V>> entrySet(){
+		return entries;
+	}
+}
+
