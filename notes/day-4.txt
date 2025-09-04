@@ -69,6 +69,19 @@ B. Externalization: comparison logic is not written inside the model/entity (T) 
 
 Comaparator<T> => int compare(T o1, T o2);
 
+Set:
+---------------
+It is a collection of unique items, .i.e., no duplicate items can be added in this collection
+Set collection types do not provide indexing facility, i.e. you can't fetch a value from Set using index position
+
+when you add an element in Set<T> instance using add() method
+	- add() method calls hashCode() method of the every T type item that you add in the collection
+	- when you try to add the next element, add() method checks whether the hash code of this element (that you are adding) is by any chance same as that of the hash code any previous item
+	- if the hash code of the current element that you are adding is same as that of the hash code of any previous element, then add() method calls equals() method of the T type item on the current element and passes the other item (whose hash code is same as that of the current element) as an argument to the equals() method
+	- if the equals() method returns true, indicating that the current and the other element (whose hash code is same as that of the current element), are identical, then the current element will not be added in the Set
+
+
+
 
 
 
