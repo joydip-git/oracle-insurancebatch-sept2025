@@ -7,6 +7,8 @@ Product class following members:
 
 in main method-
 	a. create a TreeSet<Product>
+		i. new TreeSet<>()
+		ii. new TreeSet<>(Comparartor<T> type instance)
 	b. add some sample product objects (at least 3)
 	c. sort them by choice
 		I. print the sort menu
