@@ -1,5 +1,4 @@
-public class Person implements Comparable<Person>
-{
+public class Person implements Comparable<Person> {
     private int id;
     private String name;
 
@@ -34,6 +33,7 @@ public class Person implements Comparable<Person>
 
     @Override
     public int compareTo(Person o) {
+        System.out.println("in compareTo method in Person");
         return this.id - o.id;
     }
 }

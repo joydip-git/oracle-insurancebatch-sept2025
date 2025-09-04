@@ -1,0 +1,74 @@
+interface Iterable<T>{
+	Iterator<T> iterator();
+}
+interface Collection<T>{
+	int size();
+	boolean isEmpty();
+	boolean contains(Object o);
+	Object[] toArray();
+	<T> T[] toArray(T[] a);
+	boolean add(E e);
+	boolean remove(Object o);
+	boolean addAll(Collection<? extends E> c);
+	boolean removeAll(Collection<?> c);
+	void clear();
+	....
+
+}
+interface List<T> exnetnds Collection<T>, Iterable<T>{
+}
+
+class ArrayList<T> implements List<T>{
+}
+
+Utility class:
+	such a class where every member is static, starting from data members, constructors, getter/setters and methods. This type of class generally does not contain instance data.
+We do not create instance of such class. The idea is to create such a class whose members will be used so frequently that we do not want to create instance of it.
+
+class Utility{
+	private static Scanner scanner;
+	//this static block code is executed ONLY once and very first time you use this class
+	static {
+		scanner = new Scanner(System.in);
+	}
+	public static printMenu(){}
+	public int static getChoice(){ return 0;}
+	public static void dispose(){
+		scanner.close();
+	}
+	
+}
+
+Utility.printMenu();
+Utility.getChoice();
+Utility.dispose();
+
+Comparison of values in Java:
+--------------------------------
+A. Internalization: comparison logic is written inside the model/entity (T) by implementing Comparable<T> interface from java.lang package
+
+Comaparable<T> =>  public int compareTo(T o);
+
+class Integer implements Comaparable<Integer>, Comparator<Integer>{
+	 public int compareTo(Integer o){
+		return this.intValue() - o.intValue();
+	 }
+	 public static int compare(Integer o1, Integer o2){
+		return o1.intValue() - o2.intValue();
+	 }
+}
+>0 a>b
+<0 a<b
+==0 a==b
+
+Integer a = 10;
+Integer b = 20;
+a.comapreTo(b);
+
+B. Externalization: comparison logic is not written inside the model/entity (T) by implementing Comparable<T> interface from java.lang package, rather written inside a separate entity by implementing Comparator<T> interface from java.util package
+
+Comaparator<T> => int compare(T o1, T o2);
+
+
+
+

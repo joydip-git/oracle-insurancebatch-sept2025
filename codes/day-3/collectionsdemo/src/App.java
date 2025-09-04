@@ -1,7 +1,7 @@
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -39,9 +39,17 @@ public class App {
         }
 
         List<Person> people = new ArrayList<>();
-        people.add(new Person(2, "sunil"));
-        people.add(new Person(1, "joydip"));
-        people.add(new Person(3, "anil"));
+        Person sunilPerson = new Person(2, "sunil");
+        Person joydipPerson = new Person(1, "joydip");
+        Person anilPerson = new Person(3, "anil");
+        people.add(sunilPerson);
+        people.add(joydipPerson);
+        people.add(anilPerson);
+
+        // sort() method of Collections utility class expects you to pass an instance of
+        // List<T> where T has implemented Comparable<T> interface and its method "int
+        // compareTo(T o)"
+        Collections.sort(people);
 
         for (Person person : people) {
             // System.out.println(person.getId() + ", " + person.getName());
@@ -49,7 +57,5 @@ public class App {
             // toString() method is called when you try print the reference variable
             System.out.println(person);
         }
-
-        // Collections.sort(people);
     }
 }
