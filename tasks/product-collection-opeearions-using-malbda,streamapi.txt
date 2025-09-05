@@ -1,0 +1,102 @@
+Create a Java application which helps you to perform CRUD operations against a collection of Product instances
+	
+Product class following members:
+	data: id, name, price, description
+	getters/setters: for all data members
+	constructors: default and parameterized
+
+In your application 
+	- add a new package (folder) - models
+		add Product.java file where you have to create the Product class code
+	
+	- add a new package (folder) - repository
+		add a file named ProductRepository.java, where you have to 
+		- create a class which will contain a TreeSet<Product> collection as read only data member
+		- in the default class constructor, you will initialize the instance of TreeSet
+		- you will create JUST a getter for the data member
+
+	- add a new package (folder) - manager
+		- add a java class file, ProductManager, which will have following methods, which allows you to do CRUD (create, read, delete, update) operations against the TreeSet in the ProductRepository class
+		a. method to add a Product class object in the TreeSet, present in the ProductRepository.java. the method must return a Boolean value indicating the status of the operation. as an argument pass the product data to the method.
+		b.  method to delete a Product class object in the TreeSet, present in the ProductRepository.java. the method must return a Boolean value indicating the status of the operation. as an argument pass the product id to the method.
+		c.  method to update a Product class object in the TreeSet, present in the ProductRepository.java. the method must return a Boolean value indicating the status of the operation. as an argument pass the product data and product id to the method. product id will be used to find the product to update from the collection.
+		d.  method to fetch a Product class object from the TreeSet, present in the ProductRepository.java. as an argument pass the product id to the method to fetch the same product data.
+		e.  method to fetch all Product class objects from the TreeSet, present in the ProductRepository.java. the method does not have any argument.
+
+		- add a new package (folder) - userinterface
+			add a java file App.java which will contain main method
+		in the main method
+		1. display a menu for different operations
+		---MENU----
+		a. fetch products
+		b. fetch a product
+		c. add a product
+		d. update a product
+		e. delete a product
+
+		2. ask user to enter choice
+		enter choice[1/2/3/4/5]: <choice>
+
+		3. 
+		a. fetch products
+		display all the product details by calling the necessary method from ProductManager class (the products must be sorted by default by id)
+
+		submenu:
+		a. sort products
+		b. filter products
+
+		sort products:
+		display a menu to the user to sort the products displayed above
+		I. print the sort menu
+			1. sort by id
+			2. sort by name
+			3. sort by price
+		II. ask user to enter the choice
+		display all the product details in a sorted manner
+
+		filter products:		
+		ask to enter name of product (full/partial)
+		enter product name: de (or dell)
+
+		only those details of those products, whose name contains the substring (entered by user), should be displayed
+		
+
+		b. fetch a product
+		ask user to enter product id
+		enter product id: <pid>
+		display the detail of the product as fetched by calling the required method from ProductManager class
+
+		c. add a product
+		ask user to enter all the detail of the product and pass to the required method of the ProductManager class
+		display the success/failure message
+	
+		d. update a product
+		ask user to enter product id
+		enter product id: <pid>
+
+		check whether the product exists or not
+		if exists fetch data and display
+		ask user to enter new data (except product id) for other attributes
+		pass the product id and updated product data to the ProductManager
+		display the success/failure message
+
+		e. delete the product 
+		ask user to enter product id
+		Pass it to the ProductManager
+		display the success/failure message
+
+
+structure of the app:
+
+pmsapp
+	src
+		models
+			- Product.java
+		repository
+			- ProductRepository.java
+		manager
+			- ProductManager.java
+
+		userinterface
+			- App.java with main() method
+	
