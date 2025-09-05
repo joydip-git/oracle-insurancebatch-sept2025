@@ -85,4 +85,38 @@ static void main(String[] args){
 	Calculator subtractor = new Calculator.App$1();
 }
 
+Pure/stateless function:
+------------------------------
+	such a function which does not alter/mutate/change the input data, but performs some operation on the input data to produce an different output every time exactly in the same way, with no side effects, i.e., modifying external data or performing I/O
+
+
+public int add(int a, int b){
+	return a + b;
+}
+
+add(12,13);
+add(5,4);
+
+Functional Programming:
+-----------------------------
+
+Stream API
+-------------------------
+
+
+Callback mechanism:
+----------------------------
+
+Method Reference
+-------------------
+	a reference to a method
+
+Functional Interface:
+-----------------------------
+	an interface with exactly ONE abstract method (but can have many default methods - methods with code, not abstract)	
+
+Lambda expression
+--------------------
+	a concise syntax to write anonymous inner class code and method reference
+
 
