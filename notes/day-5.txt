@@ -5,3 +5,84 @@ Inner/nested classes:
 	less code for writing (code optimization)
 exception handling
 
+types of nested class:
+	a. member nested class: a class inside a class/interface
+		I. non-static member nested class
+		Note: the non-static nested member class has access to all the members of the outer class (both static and non-static)
+		II. static member nested class
+		Note: the static member inner class can access ONLY static member of the outer class
+
+	b. local nested class: a class inside a method
+	Note: 
+	1. local inner class can't be static, since anything local of a method can't be declared with "static" keyword, as static keyword is used with members of the class
+	2. local inner class has access to the local data of the method, where it has been declared
+
+	c. anonymous inner class: a class which is a nested class, whose name is decided by Java compiler and generally that class is used to provide an implementation of the interface/abstract class members
+
+class inside an interface
+--------------------------------
+interface Calculator{
+	int calculate(int a, int b);
+
+	class Implmentation implements Calculator{
+		@Override
+		public int calculate(int a, int b){
+			return a+b;
+		}
+	}
+}
+
+You do not want to use the inner class of the interface with default implementation of calculate method
+
+solution:
+1. create you own class and implement the interface and the method(s)
+2. use anonymous type
+
+//anonymous type
+static void main(String[] args){
+
+	Calculator subtractor = new Calculator() {
+            @Override
+            public int calculate(int a, int b) {
+                return a - b;
+            }
+            
+        };
+}
+
+equivalent to the following code:
+--------------------------------------
+the java compiler creates a locally nested/inner class with some name, when it compiles the Java source code to byte code
+
+App.java
+static void main(String[] args){
+
+    //javac decides the name of the local inner class inside the main method
+    class App$1 implements Calculator {
+        @Override
+        public int calculate(int a, int b) {
+            return a - b;
+        }
+    }
+    Calculator subtractor = new Calculator.App$1();
+}
+
+actually the anonymous local inner class will be inside a separate file (when byte code is created) but will be considered as inner class of the method, which is coped within the method where it is created
+--------------------------------------------------------------------------------
+file name: App$1.class (from App.java)
+code:
+class App$1 implements Calculator {
+
+        @Override
+        public int calculate(int a, int b) {
+            return a - b;
+        }
+    }
+
+file name: App.class (from App.java)
+code: 
+static void main(String[] args){
+	Calculator subtractor = new Calculator.App$1();
+}
+
+
