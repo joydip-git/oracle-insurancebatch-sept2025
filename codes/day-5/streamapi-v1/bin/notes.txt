@@ -1,0 +1,30 @@
+//original source of data
+        List<Integer> numbers = List.of(3, 1, 5, 6, 4, 9, 7, 0, 8);
+
+        //1. ordering/sorting them in acsending order
+        List<Integer> orderedList = new ArrayList<>();
+        for (int num : numbers) {
+            orderedList.add(num);
+        }
+
+        for (int i = 0; i < orderedList.size(); i++) {
+            for (int j = i + 1; i < orderedList.size(); i++) {
+                if (orderedList.get(i) > orderedList.get(j)) {
+                    int temp = orderedList.get(i);
+                    orderedList.set(i, orderedList.get(j));
+                    orderedList.set(j, temp);
+                }
+            }
+        }
+
+        //2. filtering the even numbers
+        List<Integer> filteredList = new ArrayList<>();
+        for (int num : orderedList) {
+            if (num % 2 == 0) {
+                filteredList.add(num);
+            }
+        }
+
+        for (int num : filteredList) {
+            System.out.println(num);
+        }

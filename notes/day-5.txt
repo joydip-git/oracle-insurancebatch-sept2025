@@ -1,4 +1,5 @@
 Inner/nested classes:
+------------------------------
 	you want to logically group classes and interfaces in one place 
 	for more readability
 	for maintainability
@@ -99,24 +100,53 @@ add(5,4);
 
 Functional Programming:
 -----------------------------
+Functional programming is a programming paradigm that focuses on creating code by applying and composing pure, stateless functions, treating computation as the evaluation of mathematical functions rather than executing a sequence of imperative commands. It emphasizes immutability (non-changing data), declarative code ("what to solve" rather than "how"), and avoids shared state and side effects, leading to more predictable, testable, and parallelizable code. 
 
 Stream API
 -------------------------
+It enables declarative operations on data, allowing developers to focus on what to achieve rather than how to iterate. 
+They are wrappers around a data source, facilitating operations without modifying the original data.
+Streams support operations like sorted, filter, map, and reduce, promoting a functional programming style.
+Operations can be chained together to form a pipeline, which is optimized for efficient processing.
+Stream<T> API methods (such as sorted, filter, map, reduce etc.) accepts a reference of class instance which implements certain interface. Through those instances you provide the logic to be applied on the every element of that stream of data.
 
+such as, 
+sorted() method accepts instance of a class implementing Comparator<T> interface
+filter() method accepts instance of a class implementing Predicate<T> interface
+forEach() method accepts instance of a class implementing Consumer<T> interface
+
+Some of the Stream API methods terminate the stream, such as toList(), forEcah() etc.
 
 Callback mechanism:
 ----------------------------
+	passing a reference of a method to another method so that, the former can be called from later 
+
+void foo(){}
+
+void invoker(FI fi){}
+
+void main(){
+	invoker(foo);
+}
+
 
 Method Reference
 -------------------
 	a reference to a method
-
+	we use a functional interface to store reference to a method
+	you can call the method using the reference to the method
+	
 Functional Interface:
 -----------------------------
-	an interface with exactly ONE abstract method (but can have many default methods - methods with code, not abstract)	
+	an interface with exactly ONE abstract method (but can have many default methods - methods with code, not abstract)
+	- Comparator<T> => int compare(T o1, T o2);
+	- Predicate<T> => boolean test(T t);
+	- Consumer<T> => void accept(T t);
+	Functional interface can be declared with @FunctionalInterface annotation (without that also its fine)	
 
 Lambda expression
 --------------------
 	a concise syntax to write anonymous inner class code and method reference
+	Calculator<Integer> addFn = (a,b) -> a+b;
 
 
