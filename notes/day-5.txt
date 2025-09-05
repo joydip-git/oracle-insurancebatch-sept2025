@@ -1,0 +1,7 @@
+Inner/nested classes:
+	you want to logically group classes and interfaces in one place 
+	for more readability
+	for maintainability
+	less code for writing (code optimization)
+exception handling
+
