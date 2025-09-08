@@ -1,5 +1,10 @@
 package com.oracle.database.repository;
 
+import java.io.FileNotFoundException;
+//import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+//import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -10,49 +15,84 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import com.oracle.database.models.Product;
 
 public class ProductRepository {
 
+    //The Properties class represents a persistent set of properties. The Properties can be saved to a stream or loaded from a stream. Each key and its corresponding value in the property list is a string.
+    private Properties databaseConfiguration;
+
+    public ProductRepository() throws FileNotFoundException, IOException {
+        databaseConfiguration = new Properties();
+
+        //1. using InputStream
+        InputStream stream = this
+                .getClass()
+                .getClassLoader()
+                .getResourceAsStream("databaseconfig.properties");
+        databaseConfiguration.load(stream);
+        stream.close();
+
+        //2. using FileReader
+        //Class URL represents a Uniform Resource Locator, a pointer to a "resource" on the World Wide Web. A resource can be something as simple as a file or a directory, or it can be a reference to a more complicated object, such as a query to a database or to a search engine.
+        // URL url = this
+        //         .getClass()
+        //         .getClassLoader()
+        //         .getResource("databaseconfig.properties");
+        // String path = url.getPath();
+        // FileReader reader = new FileReader(path);
+        // databaseConfiguration.load(reader);
+        // reader.close();
+    }
+
+    private Connection createConnection() throws ClassNotFoundException, SQLException {
+        Class.forName(databaseConfiguration.getProperty("driverName"));
+        Connection connection = DriverManager.getConnection(
+                databaseConfiguration.getProperty("url"),
+                databaseConfiguration.getProperty("userName"),
+                databaseConfiguration.getProperty("password"));
+
+        return connection;
+    }
+
+    private Product mapResultSetRecordToProduct(ResultSet result) throws SQLException {
+        Product product = new Product();
+        product.setId(result.getInt("product_id"));
+        product.setName(result.getString("product_name"));
+        product
+                .setDescription(
+                        result.getString("product_desc")
+                );
+        product
+                .setPrice(
+                        result.getDouble("product_price")
+                );
+
+        Date date = result.getDate("product_released_on");
+        LocalDate releasedOn = date.toLocalDate();
+        product.setReleasedOn(releasedOn);
+
+        product
+                .setCategoryId(
+                        result.getInt("category_id")
+                );
+        return product;
+    }
+
     public List<Product> getAll() throws ClassNotFoundException, SQLException {
 
         List<Product> products = null;
 
-        Class.forName("oracle.jdbc.driver.OracleDriver");
-
-        Connection connection = DriverManager.getConnection(
-                "jdbc:oracle:thin:@localhost:1521:orcl",
-                "system",
-                "Oracle@2024");
-
-        String query = "select * from products";
+        Connection connection = createConnection();
+        String query = databaseConfiguration.getProperty("SELECT_ALL_QUERY");
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(query);
         products = new ArrayList<>();
 
         while (result.next()) {
-            Product product = new Product();
-            product.setId(result.getInt("product_id"));
-            product.setName(result.getString("product_name"));
-            product
-                    .setDescription(
-                            result.getString("product_desc")
-                    );
-            product
-                    .setPrice(
-                            result.getDouble("product_price")
-                    );
-
-            Date date = result.getDate("product_released_on");
-            LocalDate releasedOn = date.toLocalDate();
-            product.setReleasedOn(releasedOn);
-
-            product
-                    .setCategoryId(
-                            result.getInt("category_id")
-                    );
-
+            Product product = mapResultSetRecordToProduct(result);
             products.add(product);
         }
 
@@ -64,36 +104,16 @@ public class ProductRepository {
 
     public Product get(int productId) throws ClassNotFoundException, SQLException {
         Product product = null;
-        Class.forName("oracle.jdbc.driver.OracleDriver");
-        Connection connection = DriverManager.getConnection(
-                "jdbc:oracle:thin:@localhost:1521:orcl",
-                "system",
-                "Oracle@2024");
+        Connection connection = createConnection();
 
         //parameterized query
-        String query = "select * from products where product_id=?";
+        String query = databaseConfiguration.getProperty("SELECET_SINGLE_QUERY");
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, productId);
 
         ResultSet result = statement.executeQuery();
         while (result.next()) {
-            product = new Product();
-            product.setId(result.getInt("product_id"));
-            product.setName(result.getString("product_name"));
-            product
-                    .setDescription(
-                            result.getString("product_desc"));
-            product
-                    .setPrice(
-                            result.getDouble("product_price"));
-
-            Date date = result.getDate("product_released_on");
-            LocalDate releasedOn = date.toLocalDate();
-            product.setReleasedOn(releasedOn);
-
-            product
-                    .setCategoryId(
-                            result.getInt("category_id"));
+                product = mapResultSetRecordToProduct(result);
         }
 
         statement.close();
@@ -104,13 +124,9 @@ public class ProductRepository {
     }
 
     public boolean insert(Product product) throws ClassNotFoundException, SQLException {
-        Class.forName("oracle.jdbc.driver.OracleDriver");
-        Connection connection = DriverManager.getConnection(
-                "jdbc:oracle:thin:@localhost:1521:orcl",
-                "system",
-                "Oracle@2024");
+        Connection connection = createConnection();
 
-        String query = "insert into products(product_id,product_name,product_desc,product_price,product_released_on,category_id) values(?,?,?,?,?,?)";
+        String query = databaseConfiguration.getProperty("INSERT_QUERY");
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, product.getId());
         statement.setString(2, product.getName());
@@ -131,37 +147,29 @@ public class ProductRepository {
     }
 
     public boolean update(int id, Product product) throws ClassNotFoundException, SQLException {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            Connection connection = DriverManager.getConnection(
-                            "jdbc:oracle:thin:@localhost:1521:orcl",
-                            "system",
-                            "Oracle@2024");
+        Connection connection = createConnection();
 
-            String query = "update products set product_name=?,product_desc=?,product_price=?,product_released_on=?,category_id=? where product_id=?";
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setInt(6, id);
-            statement.setString(1, product.getName());
-            statement.setString(2, product.getDescription());
-            statement.setDouble(3, product.getPrice());
-            statement.setDate(4, Date.valueOf(product.getReleasedOn()));
-            statement.setInt(5, product.getCategoryId());
+        String query = databaseConfiguration.getProperty("UPDATE_QUERY");
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(6, id);
+        statement.setString(1, product.getName());
+        statement.setString(2, product.getDescription());
+        statement.setDouble(3, product.getPrice());
+        statement.setDate(4, Date.valueOf(product.getReleasedOn()));
+        statement.setInt(5, product.getCategoryId());
 
-            int result = statement.executeUpdate();
+        int result = statement.executeUpdate();
 
-            statement.close();
-            connection.close();
+        statement.close();
+        connection.close();
 
-            return result > 0;
+        return result > 0;
     }
-    
-    public boolean delete(int id) throws ClassNotFoundException, SQLException {
-        Class.forName("oracle.jdbc.driver.OracleDriver");
-        Connection connection = DriverManager.getConnection(
-                "jdbc:oracle:thin:@localhost:1521:orcl",
-                "system",
-                "Oracle@2024");
 
-        String query = "delete from products where product_id=?";
+    public boolean delete(int id) throws ClassNotFoundException, SQLException {
+        Connection connection = createConnection();
+
+        String query = databaseConfiguration.getProperty("DELETE_QUERY");
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, id);
 

@@ -1,5 +1,7 @@
 package com.oracle.database;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,25 +13,22 @@ import com.oracle.database.repository.ProductRepository;
 
 public class Main {
 
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+    public static void main(String[] args) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
         Scanner scanner = new Scanner(System.in);
         ProductRepository repository = new ProductRepository();
 
         //fetching all products
-        getProducts(repository);
+        //getProducts(repository);
 
         //fetch a single product
         getProduct(scanner, repository);
-
+        
         //add a new product
-        addProduct(scanner, repository);
-
+        //addProduct(scanner, repository);
         //update an existing product
-        updateProduct(scanner, repository);
-
+        //updateProduct(scanner, repository);
         //delete an existong product
-        deleteProduct(scanner, repository);
-
+        //deleteProduct(scanner, repository);
         scanner.close();
     }
 
@@ -59,7 +58,7 @@ public class Main {
         String name = scanner.next();
 
         scanner.nextLine();
-        
+
         System.out.print("price: ");
         double price = scanner.nextDouble();
         System.out.print("description: ");
