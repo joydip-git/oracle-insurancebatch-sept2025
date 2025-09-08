@@ -35,7 +35,7 @@ example: OracleDriver is from oracle.jdbc.driver package
 JDBC APIs
 package: java.sql.*;
 ---------------------
-	DriverManager
+	DriverManager class
 		- interact with Database specific driver and creates a connection instance
 	Connection
 	Statement 
@@ -44,17 +44,6 @@ package: java.sql.*;
 		- the query can return result (select query - more than one value/single value) or might not return any result (insert/update/delete etc. query)
 	ResultSet - represents set of records/single record
 
-steps:
-	1. load the jdbc driver (for oracle/mysql etc) dynamically
-
-
-oracle.com
-com.oracle.database
-
-
-exceptions
-	- checked
-	- unchecked
 
 Main => UI
 ProductRepository => Data Access Layer (containing data access logic => methods with code to interact with a particular database table)
@@ -62,12 +51,25 @@ ProductRepository => Data Access Layer (containing data access logic => methods 
 DAL should not have any input/output (user interaction) code
 the methods in DAL class should receive input and return data
 
-product_id, product_name etc.
 
-class Product
-	=> productid int
-	=> productName String
+1. create a Maven project (without any achetype)
+2. in the pom.xml file, add the ojdbc dependency (copied from maven repository site)
+3. create a model class(s) in a separate package (Ex: models)
+4. create a repository class with necessary CRUD methods to work with a single table in a separate package (ex: repository)
+5. add a *.properties file in the "resources" directory and all the required database connection information and queries in that file as key value pair
+6. in the repository class constructor, load the configuration by reading the same from the properties file using either FileReader or InputStream, into a Properties class object
+7. create utility private method to create a connection and return the same
+8. add necessary CRUD method in the repository class 
+	steps:
+	1. load the jdbc driver (for oracle/mysql etc) dynamically
+	2. create a connection
+	3. create a statement with/without query (in case of PreparedStatement)
+	4. add parameters in the statement if the query is having parameters
+	5. execute the query (and pass the query in some cases, such as executeQuery method)
+	6. return the data from the query execution (in case of SELECT it is ResultSet or in case of INSERT, UPDATE, DELETE etc. the int/Boolean value)
+	7. before returning the data close the statement object first and then close the connection object
 
+9. call them from UI or some other layer through the instance of Repository class
 
 
 	
