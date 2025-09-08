@@ -1,83 +1,108 @@
 package com.oracle.database.repository;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.oracle.database.models.Product;
 
 public class ProductRepository {
 
-    public void getAll() throws ClassNotFoundException, SQLException {
-        //1. dynamically load the driver (in Java runtime)
+    public List<Product> getAll() throws ClassNotFoundException, SQLException {
+
+        List<Product> products = null;
+
         Class.forName("oracle.jdbc.driver.OracleDriver");
 
-        //2. create connection
-        //getConnection() creates an instance of a class which implements the Connection interface (up-casting)
-        Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system",
+        Connection connection = DriverManager.getConnection(
+                "jdbc:oracle:thin:@localhost:1521:orcl",
+                "system",
                 "Oracle@2024");
 
-        //3. create a statement
         String query = "select * from products";
-        //createStatement() creates an object of a class which implements the Statement interface (upcasting), to execute mainly SQL SELECT type query without parameter
         Statement statement = connection.createStatement();
-
-        //4. execute the query using executeQuery method (for SELECT queries)
-        //the returned record(s) will be stored in an instance of ResultSet type (the class which implements the ResultSet interface) object created by executeQuery() method
-        //do not use ResultSet as return value from this method, since ResultSet needs an active statement object and connection object 
-        //if you return this ResultSet then you can't close both statement and connection here
         ResultSet result = statement.executeQuery(query);
+        products = new ArrayList<>();
 
-        //ResultSet provides a cursor to read through the records, one record at a time (use next() method)
         while (result.next()) {
-            //fetch data from every column of the current record (as pointed by the cursor)
-            System.out.println(
-                    result.getInt("product_id")
-                    + "\t"
-                    + result.getString("product_name")
-                    + "\t"
-                    + result.getDouble("product_price")
-                    + "\t"
-                    + result.getString("product_desc")
-                    + "\t"
-                    + result.getDate("product_released_on")
-                    + "\t"
-                    + result.getInt("category_id"));
+            Product product = new Product();
+            product.setId(result.getInt("product_id"));
+            product.setName(result.getString("product_name"));
+            product
+                    .setDescription(
+                            result.getString("product_desc")
+                    );
+            product
+                    .setPrice(
+                            result.getDouble("product_price")
+                    );
+
+            Date date = result.getDate("product_released_on");
+            LocalDate releasedOn = date.toLocalDate();
+            product.setReleasedOn(releasedOn);
+
+            product
+                    .setCategoryId(
+                            result.getInt("category_id")
+                    );
+
+            products.add(product);
         }
 
         statement.close();
         connection.close();
+
+        return products;
     }
 
-    public void get(int productId) throws ClassNotFoundException, SQLException {
+    public Product get(int productId) throws ClassNotFoundException, SQLException {
+        Product product = null;
         Class.forName("oracle.jdbc.driver.OracleDriver");
-        Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "system",
+        Connection connection = DriverManager.getConnection(
+                "jdbc:oracle:thin:@localhost:1521:orcl",
+                "system",
                 "Oracle@2024");
+
         //parameterized query
         String query = "select * from products where product_id=?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, productId);
 
         ResultSet result = statement.executeQuery();
-
         while (result.next()) {
-            System.out.println(
-                    result.getInt("product_id")
-                    + "\t"
-                    + result.getString("product_name")
-                    + "\t"
-                    + result.getDouble("product_price")
-                    + "\t"
-                    + result.getString("product_desc")
-                    + "\t"
-                    + result.getDate("product_released_on")
-                    + "\t"
-                    + result.getInt("category_id"));
+            product = new Product();
+            product.setId(result.getInt("product_id"));
+            product.setName(result.getString("product_name"));
+            product
+                    .setDescription(
+                            result.getString("product_desc")
+                    );
+            product
+                    .setPrice(
+                            result.getDouble("product_price")
+                    );
+
+            Date date = result.getDate("product_released_on");
+            LocalDate releasedOn = date.toLocalDate();
+            product.setReleasedOn(releasedOn);
+
+            product
+                    .setCategoryId(
+                            result.getInt("category_id")
+                    );
         }
 
         statement.close();
         connection.close();
+
+        return product;
 
     }
 }
