@@ -89,8 +89,8 @@ public class ProductRepository {
         String query = databaseConfiguration.getProperty("SELECT_ALL_QUERY");
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(query);
+        
         products = new ArrayList<>();
-
         while (result.next()) {
             Product product = mapResultSetRecordToProduct(result);
             products.add(product);
