@@ -56,6 +56,18 @@ exceptions
 	- checked
 	- unchecked
 
+Main => UI
+ProductRepository => Data Access Layer (containing data access logic => methods with code to interact with a particular database table)
+
+DAL should not have any input/output (user interaction) code
+the methods in DAL class should receive input and return data
+
+product_id, product_name etc.
+
+class Product
+	=> productid int
+	=> productName String
+
 
 
 	
