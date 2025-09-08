@@ -1,0 +1,61 @@
+oracle.jdbc.driver.OracleDriver
+jdbc:oracle:thin:@localhost:1521:orcl
+
+
+managing dependencies as part of the Java application
+tools
+	- maven -> pom.xml
+	- gradel
+	etc.
+
+1. download apache maven tool (apache-maven-3.9.11-bin.zip)
+2. extract the folder
+3. places the extracted folder inside C:\Program Files\ folder
+4. set a new env variable MAVEN_HOME and provide the value-> C:\Program Files\apache-maven-3.9.11-bin\apache-maven-3.9.11 for the path
+5. select 'PATH' env variable and click on Edit button and click on the New button and add %MAVEN_HOME%\bin as the value in the PATH
+6. by chance if any terminal (powershell/cmd) is open, close the same and re-open it
+
+Database Interaction from Java application (JDBC)
+-----------------------------------------------------
+Java Data Base Connectivity
+
+Drivers
+	Oracle
+	MySQL
+	PostgreSQL
+	SQL Server 
+
+Driver interface for Oracle - OracleDriver
+download and use the driver as part of the application
+package (JAR) - ojdbc11
+base package name: oracle.jdbc.*;
+
+example: OracleDriver is from oracle.jdbc.driver package
+
+JDBC APIs
+package: java.sql.*;
+---------------------
+	DriverManager
+		- interact with Database specific driver and creates a connection instance
+	Connection
+	Statement 
+		- uses an open connection
+		- through that open connection it sends a query (parameterized or without parameter) to the connected database and gets it executed
+		- the query can return result (select query - more than one value/single value) or might not return any result (insert/update/delete etc. query)
+	ResultSet - represents set of records/single record
+
+steps:
+	1. load the jdbc driver (for oracle/mysql etc) dynamically
+
+
+oracle.com
+com.oracle.database
+
+
+exceptions
+	- checked
+	- unchecked
+
+
+
+	
