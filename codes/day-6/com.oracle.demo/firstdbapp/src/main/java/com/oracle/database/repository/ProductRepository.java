@@ -1,10 +1,7 @@
 package com.oracle.database.repository;
 
-import java.io.FileNotFoundException;
-//import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-//import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -21,30 +18,24 @@ import com.oracle.database.models.Product;
 
 public class ProductRepository {
 
-    //The Properties class represents a persistent set of properties. The Properties can be saved to a stream or loaded from a stream. Each key and its corresponding value in the property list is a string.
-    private Properties databaseConfiguration;
+    private Properties databaseConfiguration;    
 
-    public ProductRepository() throws FileNotFoundException, IOException {
-        databaseConfiguration = new Properties();
+    private void loadConfiguration() throws IOException {
+        InputStream stream = null;
+        try {
+            databaseConfiguration = new Properties();
 
-        //1. using InputStream
-        InputStream stream = this
-                .getClass()
-                .getClassLoader()
-                .getResourceAsStream("databaseconfig.properties");
-        databaseConfiguration.load(stream);
-        stream.close();
-
-        //2. using FileReader
-        //Class URL represents a Uniform Resource Locator, a pointer to a "resource" on the World Wide Web. A resource can be something as simple as a file or a directory, or it can be a reference to a more complicated object, such as a query to a database or to a search engine.
-        // URL url = this
-        //         .getClass()
-        //         .getClassLoader()
-        //         .getResource("databaseconfig.properties");
-        // String path = url.getPath();
-        // FileReader reader = new FileReader(path);
-        // databaseConfiguration.load(reader);
-        // reader.close();
+            stream = this
+                    .getClass()
+                    .getClassLoader()
+                    .getResourceAsStream("databaseconfig.properties");
+            databaseConfiguration.load(stream);
+        } catch (IOException e) {
+            throw e;
+        } finally {
+            if (stream != null)
+                stream.close();
+        }
     }
 
     private Connection createConnection() throws ClassNotFoundException, SQLException {
@@ -63,12 +54,10 @@ public class ProductRepository {
         product.setName(result.getString("product_name"));
         product
                 .setDescription(
-                        result.getString("product_desc")
-                );
+                        result.getString("product_desc"));
         product
                 .setPrice(
-                        result.getDouble("product_price")
-                );
+                        result.getDouble("product_price"));
 
         Date date = result.getDate("product_released_on");
         LocalDate releasedOn = date.toLocalDate();
@@ -76,107 +65,188 @@ public class ProductRepository {
 
         product
                 .setCategoryId(
-                        result.getInt("category_id")
-                );
+                        result.getInt("category_id"));
         return product;
     }
 
-    public List<Product> getAll() throws ClassNotFoundException, SQLException {
+    public ProductRepository() throws IOException {
+        loadConfiguration();
+    }
+    
+    public List<Product> getAll() throws ClassNotFoundException, SQLException, Exception {
 
         List<Product> products = null;
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            connection = createConnection();
+            String query = databaseConfiguration.getProperty("SELECT_ALL_QUERY");
 
-        Connection connection = createConnection();
-        String query = databaseConfiguration.getProperty("SELECT_ALL_QUERY");
-        Statement statement = connection.createStatement();
-        ResultSet result = statement.executeQuery(query);
-        
-        products = new ArrayList<>();
-        while (result.next()) {
-            Product product = mapResultSetRecordToProduct(result);
-            products.add(product);
+            if (query == null || query.isBlank() || query.isEmpty())
+                throw new Exception("query not found...");
+
+            statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(query);
+
+            products = new ArrayList<>();
+            while (result.next()) {
+                Product product = mapResultSetRecordToProduct(result);
+                products.add(product);
+            }
+        } catch (SQLException e) {
+            throw e;
+        } catch (ClassNotFoundException e) {
+            throw e;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (statement != null)
+                statement.close();
+
+            if (connection != null)
+                connection.close();
         }
-
-        statement.close();
-        connection.close();
-
         return products;
     }
 
-    public Product get(int productId) throws ClassNotFoundException, SQLException {
+    public Product get(int productId) throws ClassNotFoundException, SQLException, Exception {
         Product product = null;
-        Connection connection = createConnection();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = createConnection();
 
-        //parameterized query
-        String query = databaseConfiguration.getProperty("SELECET_SINGLE_QUERY");
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1, productId);
+            // parameterized query
+            String query = databaseConfiguration.getProperty("SELECET_SINGLE_QUERY");
+            if (query == null || query.isBlank() || query.isEmpty())
+                throw new Exception("query not found...");
 
-        ResultSet result = statement.executeQuery();
-        while (result.next()) {
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, productId);
+
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
                 product = mapResultSetRecordToProduct(result);
-        }
+            }
+        } catch (SQLException e) {
+            throw e;
+        } catch (ClassNotFoundException e) {
+            throw e;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (statement != null)
+                statement.close();
 
-        statement.close();
-        connection.close();
+            if (connection != null)
+                connection.close();
+        }
 
         return product;
 
     }
 
-    public boolean insert(Product product) throws ClassNotFoundException, SQLException {
-        Connection connection = createConnection();
+    public boolean insert(Product product) throws ClassNotFoundException, SQLException, Exception {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        int result = 0;
+        try {
+            connection = createConnection();
 
-        String query = databaseConfiguration.getProperty("INSERT_QUERY");
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1, product.getId());
-        statement.setString(2, product.getName());
-        statement.setString(3, product.getDescription());
-        statement.setDouble(4, product.getPrice());
-        statement.setDate(5, Date.valueOf(product.getReleasedOn()));
-        statement.setInt(6, product.getCategoryId());
+            String query = databaseConfiguration.getProperty("INSERT_QUERY");
+            if (query == null || query.isBlank() || query.isEmpty())
+                throw new Exception("query not found...");
 
-        //common method to execute any query and returns boolean
-        //statement.execute();
-        // executeUpdate(): Executes the SQL statement in this PreparedStatement object, which must be an SQL Data Manipulation Language (DML) statement, such as INSERT, UPDATE or DELETE; or an SQL statement that returns nothing, such as a DDL statement.
-        int result = statement.executeUpdate();
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, product.getId());
+            statement.setString(2, product.getName());
+            statement.setString(3, product.getDescription());
+            statement.setDouble(4, product.getPrice());
+            statement.setDate(5, Date.valueOf(product.getReleasedOn()));
+            statement.setInt(6, product.getCategoryId());
 
-        statement.close();
-        connection.close();
+            result = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } catch (ClassNotFoundException e) {
+            throw e;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (statement != null)
+                statement.close();
 
+            if (connection != null)
+                connection.close();
+        }
         return result > 0;
     }
 
-    public boolean update(int id, Product product) throws ClassNotFoundException, SQLException {
-        Connection connection = createConnection();
+    public boolean update(int id, Product product) throws ClassNotFoundException, SQLException, Exception {
 
-        String query = databaseConfiguration.getProperty("UPDATE_QUERY");
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(6, id);
-        statement.setString(1, product.getName());
-        statement.setString(2, product.getDescription());
-        statement.setDouble(3, product.getPrice());
-        statement.setDate(4, Date.valueOf(product.getReleasedOn()));
-        statement.setInt(5, product.getCategoryId());
+        Connection connection = null;
+        PreparedStatement statement = null;
+        int result = 0;
 
-        int result = statement.executeUpdate();
+        try {
+            connection = createConnection();
 
-        statement.close();
-        connection.close();
+            String query = databaseConfiguration.getProperty("UPDATE_QUERY");
 
+            if (query == null || query.isBlank() || query.isEmpty())
+                throw new Exception("query not found...");
+
+            statement = connection.prepareStatement(query);
+            statement.setInt(6, id);
+            statement.setString(1, product.getName());
+            statement.setString(2, product.getDescription());
+            statement.setDouble(3, product.getPrice());
+            statement.setDate(4, Date.valueOf(product.getReleasedOn()));
+            statement.setInt(5, product.getCategoryId());
+
+            result = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } catch (ClassNotFoundException e) {
+            throw e;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (statement != null)
+                statement.close();
+
+            if (connection != null)
+                connection.close();
+        }
         return result > 0;
     }
 
-    public boolean delete(int id) throws ClassNotFoundException, SQLException {
-        Connection connection = createConnection();
+    public boolean delete(int id) throws ClassNotFoundException, SQLException, Exception {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        int result = 0;
 
-        String query = databaseConfiguration.getProperty("DELETE_QUERY");
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1, id);
+        try {
+            connection = createConnection();
 
-        int result = statement.executeUpdate();
+            String query = databaseConfiguration.getProperty("DELETE_QUERY");
+            statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
 
-        statement.close();
-        connection.close();
+            result = statement.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } catch (ClassNotFoundException e) {
+            throw e;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (statement != null)
+                statement.close();
+
+            if (connection != null)
+                connection.close();
+        }
 
         return result > 0;
     }

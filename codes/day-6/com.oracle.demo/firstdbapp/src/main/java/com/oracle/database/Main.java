@@ -13,23 +13,36 @@ import com.oracle.database.repository.ProductRepository;
 
 public class Main {
 
-    public static void main(String[] args) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException {
-        Scanner scanner = new Scanner(System.in);
-        ProductRepository repository = new ProductRepository();
+    public static void main(String[] args) {
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(System.in);
+            ProductRepository repository = new ProductRepository();
 
-        //fetching all products
-        //getProducts(repository);
+            // fetching all products
+            // getProducts(repository);
 
-        //fetch a single product
-        getProduct(scanner, repository);
-        
-        //add a new product
-        //addProduct(scanner, repository);
-        //update an existing product
-        //updateProduct(scanner, repository);
-        //delete an existong product
-        //deleteProduct(scanner, repository);
-        scanner.close();
+            // fetch a single product
+            getProduct(scanner, repository);
+
+            // add a new product
+            // addProduct(scanner, repository);
+            // update an existing product
+            // updateProduct(scanner, repository);
+            // delete an existong product
+            // deleteProduct(scanner, repository);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (scanner != null)
+                scanner.close();
+        }
     }
 
     private static void deleteProduct(Scanner scanner, ProductRepository repository)
@@ -63,7 +76,7 @@ public class Main {
         double price = scanner.nextDouble();
         System.out.print("description: ");
         String description = scanner.nextLine();
-        //scanner.next();
+        // scanner.next();
         System.out.print("release date[in yyyy-mm-dd format]: ");
         LocalDate date = LocalDate.parse(scanner.next(),
                 DateTimeFormatter.ISO_LOCAL_DATE);
