@@ -62,4 +62,22 @@ best practices:
 use catch block with superclass Exception as the last one, as this superclass can catch any exception
 use finally block whenever you are using resources, such as database connection, file connection etc. and need to close those connections to avoid memory leak, irrespective of whether the code throws error or not.
 
+s/w architecture should be loosely coupled
+rely/depend on abstract not concrete implementation
+
+minimize the effect of modification 
+	localize and contain it as much as possible
+
+StringDataManager class needs an instance of StringDataRespository class
+StringDataManager is dependent on StringDataRespository class instance
+
+dependency injection:
+	if a class (StringDataManager) is dependent on another class (StringDataRespository), then resolving this dependency and then passing the reference of dependency object (StringDataRespository class object) to the dependent object (StringDataManager object) is known as DI (dependency injection)
+	this DI can be achieved via constructor, setter or any other method
+	though constructor -> DI through constructor (constructor injection)
+
+loose coupling and tight cohesion:
+	through interface
+
+
 
