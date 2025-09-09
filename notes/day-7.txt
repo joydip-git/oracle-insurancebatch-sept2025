@@ -16,12 +16,38 @@ Exception e = new Exception();
 hands over the instance to you (throw)
 
 Throwable
+--------------
 	a. Exception
-		I. checked Exception - compile time exceptions (ClassNotFoundException, FileNotFoundException, IOException, SQLException etc.)
-		II. Unchecked Exception: ArithmeticException,NullPointerException etc.
+		I. checked Exception - compile time exceptions 
+		These exceptions are checked during compile time.
+		This means, that the compiler verifies that the code handles these exceptions 
+		1. either by catching them using "try...catch" block 
+		2. or declaring them in the method signature using "throws" keyword
+			example: 
+			ClassNotFoundException, 
+			FileNotFoundException, 
+			IOException, 	
+			SQLException etc.
 
-	b. Error (such exception from which your application will NOT be able to recover)
+		II. Unchecked Exception - runtime exceptions
+		-----------------------------------------------------
+
+		They are not checked during compilation time.
+		These exceptions happen due to some programming errors (such as dividing a number by zero, or trying to access value from an invalid index position of an array etc.)
+		These exceptions need not be declared in the method signature using throws keyword
+		It is optional to handle them
+			example:
+			ArithmeticException,
+			NullPointerException etc.
+
+	b. Error
+	such exception from which your application will NOT be able to recover so easily
+	it is not expected to be caught under normal circumstances
+	they are typically caused by issues outside the control of the application, such as system failures or memory full etc.
+	These errors are not meant to be caught or handled in the application code
 		- VirtualMachineError
+		- StackOverflowError
+		- NoClassDefFoundError
 		etc.
 
 How exception is handled by JVM?
@@ -30,5 +56,10 @@ The run-time system searches the call stack for an exception handler
 It starts searching from the method where the exception occurred and proceeds backward through the call stack.
 If a handler is found, the exception is passed to it.
 If no handler is found, the default exception handler terminates the program and prints the stack trace.
+
+best practices:
+--------------------------
+use catch block with superclass Exception as the last one, as this superclass can catch any exception
+use finally block whenever you are using resources, such as database connection, file connection etc. and need to close those connections to avoid memory leak, irrespective of whether the code throws error or not.
 
 

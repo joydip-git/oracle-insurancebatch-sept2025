@@ -14,11 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.oracle.database.exceptions.DbQueryException;
 import com.oracle.database.models.Product;
 
 public class ProductRepository {
 
-    private Properties databaseConfiguration;    
+    private Properties databaseConfiguration;
 
     private void loadConfiguration() throws IOException {
         InputStream stream = null;
@@ -72,7 +73,7 @@ public class ProductRepository {
     public ProductRepository() throws IOException {
         loadConfiguration();
     }
-    
+
     public List<Product> getAll() throws ClassNotFoundException, SQLException, Exception {
 
         List<Product> products = null;
@@ -83,7 +84,7 @@ public class ProductRepository {
             String query = databaseConfiguration.getProperty("SELECT_ALL_QUERY");
 
             if (query == null || query.isBlank() || query.isEmpty())
-                throw new Exception("query not found...");
+                throw new DbQueryException("get single product query not found/is blank/empty");
 
             statement = connection.createStatement();
             ResultSet result = statement.executeQuery(query);
@@ -93,9 +94,7 @@ public class ProductRepository {
                 Product product = mapResultSetRecordToProduct(result);
                 products.add(product);
             }
-        } catch (SQLException e) {
-            throw e;
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException | DbQueryException e) {
             throw e;
         } catch (Exception e) {
             throw e;
@@ -119,7 +118,7 @@ public class ProductRepository {
             // parameterized query
             String query = databaseConfiguration.getProperty("SELECET_SINGLE_QUERY");
             if (query == null || query.isBlank() || query.isEmpty())
-                throw new Exception("query not found...");
+                throw new DbQueryException("get single product query not found/is blank/empty");
 
             statement = connection.prepareStatement(query);
             statement.setInt(1, productId);
@@ -128,9 +127,7 @@ public class ProductRepository {
             while (result.next()) {
                 product = mapResultSetRecordToProduct(result);
             }
-        } catch (SQLException e) {
-            throw e;
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException | DbQueryException e) {
             throw e;
         } catch (Exception e) {
             throw e;
@@ -155,7 +152,7 @@ public class ProductRepository {
 
             String query = databaseConfiguration.getProperty("INSERT_QUERY");
             if (query == null || query.isBlank() || query.isEmpty())
-                throw new Exception("query not found...");
+                throw new DbQueryException("insert query not found/is blank/empty");
 
             statement = connection.prepareStatement(query);
             statement.setInt(1, product.getId());
@@ -166,9 +163,7 @@ public class ProductRepository {
             statement.setInt(6, product.getCategoryId());
 
             result = statement.executeUpdate();
-        } catch (SQLException e) {
-            throw e;
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException | DbQueryException e) {
             throw e;
         } catch (Exception e) {
             throw e;
@@ -194,7 +189,7 @@ public class ProductRepository {
             String query = databaseConfiguration.getProperty("UPDATE_QUERY");
 
             if (query == null || query.isBlank() || query.isEmpty())
-                throw new Exception("query not found...");
+                throw new DbQueryException("update query not found/is blank/empty");
 
             statement = connection.prepareStatement(query);
             statement.setInt(6, id);
@@ -205,9 +200,7 @@ public class ProductRepository {
             statement.setInt(5, product.getCategoryId());
 
             result = statement.executeUpdate();
-        } catch (SQLException e) {
-            throw e;
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException | DbQueryException e) {
             throw e;
         } catch (Exception e) {
             throw e;
@@ -221,7 +214,7 @@ public class ProductRepository {
         return result > 0;
     }
 
-    public boolean delete(int id) throws ClassNotFoundException, SQLException, Exception {
+    public boolean delete(int id) throws ClassNotFoundException, SQLException, DbQueryException {
         Connection connection = null;
         PreparedStatement statement = null;
         int result = 0;
@@ -230,13 +223,15 @@ public class ProductRepository {
             connection = createConnection();
 
             String query = databaseConfiguration.getProperty("DELETE_QUERY");
+
+            if (query == null || query.isBlank() || query.isEmpty())
+                throw new DbQueryException("delete query not found/is blank/empty");
+
             statement = connection.prepareStatement(query);
             statement.setInt(1, id);
 
             result = statement.executeUpdate();
-        } catch (SQLException e) {
-            throw e;
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException | DbQueryException e) {
             throw e;
         } catch (Exception e) {
             throw e;
