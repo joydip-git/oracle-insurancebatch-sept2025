@@ -1,0 +1,9 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "d:\\training\\oracle-insurancebatch-sept2025\\codes\\day-8\\calculatorapp\\calculatorapp.jar",
+        "c:\\Users\\joydi\\Downloads\\ojdbc11-23.9.0.25.07.jar"
+    ]
+}

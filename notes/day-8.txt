@@ -60,7 +60,56 @@ you: (3rd party, owner of an open source project provides implementation of the 
 WhatsAppMessageService implements MessageService
 TextMessageService
 EmailService
-	
+
+
+RESTful Application Programming Interface (service):
+---------------------------------------------------------
+REpresentational State Transfer => architectural style for distributed hypermedia system
+Roy Fielding
+
+Six guidelines:
+----------------------------
+1. Uniform Interface
+2. client-server
+3. stateless -> every request coming from a client should have all necessary information, so that the server can understand and process that request
+4. cacheable
+5. layered (Model-View-Controller pattern, IoC principle, DI)
+	data access layer -> business layer -> Service layer -> 
+6. Code on Demand
+
+http://192.168.1.20:80/calculator/add?a=10&b=20 [query string]
+http://192.168.1.20:80/calculator/add/10/20	[route parameter]
+
+http://joydip.com/calculator/subtract?a=10&b=2
+
+JavaScript Object Notation/XML 
+
+Consumer -> the one who uses/consumes the service
+
+Provider -> the one who provides a service
+
+Consumer and Provider can exchange data in platform/technology neutral manner
+such as via JSON or XML format etc.
+
+Consumer will convert their technology/language specific data into JSON/XML format -> Serialization
+Provider after receiving the request (via web server) and fetching that JSON/XML data, will convert it into its language specific format -> Deserialization
+
+Consumer and Provider will communicate via similar protocol as decided by Provider
+Consumer and Provider will communicate via a standard neutral data exchange format as decided by Provider
+Provider will also decide on the security feature for request/response
+
+Protocols:
+	HTTP - stateless and connectionless, provide no security to the data
+	TCP - stateful and connection full, provide security to the data
+
+Distributed App
+Remote Method Invocation (RMI)
+
+HTTP methods: GET, POST, PUT, DELETE, PATCH etc.
+
+
+
+
 
 
 
