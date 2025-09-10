@@ -1,0 +1,70 @@
+Main method of App class uses NotificationSender to send notification
+i.e., App class is dependent on NotificationSender
+
+sendNotification method of NotificationSender class uses EmailService/TextMessageService to send notification
+i.e.  NotificationSender is dependent on EmailService/TextMessageService
+
+Dependency Graph
+
+Dependent		Dependencies (Services)
+-----------------------------------------
+App			NotificationSender
+NotificationSender	EmailService/TextMessageService
+
+
+DI: 
+creating instance of EmailService/TextMessageService and passing it to the constructor/setter/any other method of the class: NotificationSender
+
+creating instance of NotificationSender and passing it to the constructor/setter/any other method of the class: App
+
+in DI the creation of those instances and maintaining their life-cycle (how long those instances should exist) is actually done by some external source -> DI container
+
+REST Services (J2EE/Jakarta EE): h2k (DI container)
+Spring: DI container (Spring Boot)
+----------------------------------------------------------------------
+
+J2SE: Java to Standard Edition
+J2EE: Java to Enterprise Edition
+It is a platform to create enterprise level, robust, portable, scalable and deployable application
+type of apps: client-server architecture applications, such as web page applications (JSP - Java Server Pages), Servlets, EJB (Enterprise Java Beans)
+offers better security, transaction facility
+offers you DI containers
+
+J2EE => Jakarta EE
+	=> open source specification for building the enterprise level, cloud-native application
+
+Eclipse Foundation 2017
+
+javax.* => jakarta.*
+
+com.sun.*
+
+
+Me: (Jakarta EE)
+---------------------------------
+MessageService => sendMessage
+Repositiory<T> => Boolean add(T data), List<T> fetchAll() => JSR
+
+Application
+Servlet
+
+
+tooling
+--------------------------
+propose an implementation (JSR)
+how to use that implementation
+test the implementation
+
+you: (3rd party, owner of an open source project provides implementation of the specification provided by Jakarta EE)
+---------------------------------------------------------------------------------------------
+WhatsAppMessageService implements MessageService
+TextMessageService
+EmailService
+	
+
+
+
+
+
+
+
