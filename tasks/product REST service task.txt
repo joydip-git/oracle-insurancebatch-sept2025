@@ -1,0 +1,6 @@
+create a new REST application
+delete the MyResource.java file
+create a new Java file with some name
+
+you need to fetch all records from oracle database table (of your choice) and return the records through an API method in that class
+you need to fetch single record from oracle database table (of your choice) and return the record through an API method in that class

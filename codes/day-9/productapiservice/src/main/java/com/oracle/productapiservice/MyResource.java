@@ -18,10 +18,12 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+
 /**
  * Root resource (exposed at "myresource" path)
  */
 @Path("myresource")
+@ApplicationSc
 public class MyResource {
 
 	private static List<Person> people;
