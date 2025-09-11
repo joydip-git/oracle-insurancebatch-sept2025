@@ -1,0 +1,66 @@
+RESTful API:
+-----------------------
+	classes with methods
+	the methods are callable/invocable via web (can be requested via method, such as GET, POST, PUT, PATCH, DELETE, OPTIONS etc. of HTTP protocol)
+	the methods can return different type of data in different format, such as, XML, JSON etc.
+
+	the methods MUST be annotated with either of the following annotations:
+	@GET, @POST, @PUT, @DELETE, @PATCH etc. to indicate which method of HTTP protocol should be used to request that method
+	the method optionally will have an URI
+	the method must mention what type of data it is returning
+	optionally the method can mention what type of data it is consuming
+	you can set a base path for all methods of a class one time at the tope of the class
+	
+	@Path("dataresource")
+	public class DataService{
+
+		@GET
+		@Path("welcome/{fname}/{lname}") //name -> path parameter
+		//@Produces("text/plain")
+		@Produces(MediaType.TEXT_PLAIN)
+		public String getName(@PathParam("fname") String fName, @PathParam("lame") String lName){
+			return " welcome "+fName+" "+lName;
+		}
+
+		@GET
+		@Path("hi")
+		//@Produces("text/plain")
+		@Produces(MediaType.TEXT_PLAIN)
+		public String get(@QueryParam("name") String fName,@QueryParam("lname") String lName){
+			return " hi "+fName+" "+lName;
+
+		}
+
+		@POST
+		@Path("add") 
+		@Consumes(MediaType.APPLICATION_JSON)
+		//@Produces(MediaType.TEXT_PLAIN)
+		@Produces(MediaType.APPLICATION_JSON)
+		public Person addPerson(Person person){
+			return person;
+		}	
+	}
+
+	public class Person{
+		private String name;
+		private int id;
+	}
+	if you are passing data via path parameter, no need to mention @Consumes at the top pf the method
+	http://localhost:9000/productapiservice/webapi/dataresource/welcome
+	http://localhost:9000/productapiservice/webapi/dataresource/welcome/khushi/mehta
+	http://localhost:9000/productapiservice/webapi/dataresource/hi?fname=khushi&lname=mehta
+
+	http://localhost:9000/productapiservice/webapi/dataresource/add
+	{
+		"name":"kushi",
+		"id":100	
+	}
+	=> new Person(id,name)
+
+	Jersey is the framework to create such RESTful API
+	Jersey framework provides implementation of the Jakarta EE specifications for creating RESTful API application.
+
+	the URL for every method should be different
+		- the URI part if different
+		- the method of HTTP protocol used to request is different
+

@@ -107,6 +107,46 @@ Remote Method Invocation (RMI)
 
 HTTP methods: GET, POST, PUT, DELETE, PATCH etc.
 
+Create such an web application. where there are/is at least one or more classes (Services) and those classes contain various methods which can be called from any other client application (consumer) using HTTP protocol and its methods, such GET, POST, PUT, DELETE, PATCH etc.
+
+Web Service specification: JAX-WS (Java API for XML- Web Services)
+RESTful service specification: JAX-RS (Java API for XML- RESTful Web Services)
+It is a set of Java API that provides support in creating REST APIs. And the framework makes good use of annotations to simplify the development and deployment of these APIs.
+
+
+Open source framework: Jersey
+It provides APIs to create RESTful API application
+It implements the specifications provided by Jakarta EE (JAX-RS specification) to create RESTful API application
+
+Eclipse Jersey: Jersey is the reference implementation of Jakarta RESTful Web Services (JAX-RS). It provides a robust and full-featured framework for building RESTful web services within the Jakarta EE ecosystem.
+
+RestEasy:
+It is a Java framework, a portable implementation of the Jakarta RESTful Web Services (JAX-RS) specification, for developing client and server RESTful web applications and services.
+It provides annotation-driven support for creating REST APIs and can run in any standard Java Servlet container like WildFly, Tomcat, or Jetty. 
+RESTEasy also includes client-side functionality to invoke remote web services using JAX-RS annotations and offers integration with other frameworks like Spring Boot.  
+
+Servlet:
+------------------
+Simply put, a Servlet is a class that handles requests, processes them and reply back with a response.
+
+For example, we can use a Servlet to collect input from a user through an HTML form, query records from a database, and create web pages dynamically.
+
+Servlets are under the control of another Java application called a Servlet Container. When an application running in a web server receives a request, the Server hands the request to the Servlet Container – which in turn passes it to the target Servlet.
+
+Install a web server: Apache Tomcat, Jetty or WildFly etc.
+Use Maven and this archetype: jersey-quickstart-webapp to create  a default RESTful API using Jersey
+
+
+mvn org.apache.maven.plugins:maven-archetype-plugin:3.1.2:generate -DarchetypeArtifactId="jersey-quickstart-webapp" -DarchetypeGroupId="org.glassfish.jersey.archetypes" -DarchetypeVersion="3.1.1" -DgroupId="com.oracle" -DartifactId="productservice"
+
+
+MyResource
+	-> getMessage()
+	http://localhost:8080/productservice/webapi/myresource/welcome
+
+
+
+
 
 
 
