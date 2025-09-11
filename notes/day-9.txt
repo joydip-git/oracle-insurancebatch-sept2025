@@ -64,15 +64,46 @@ RESTful API:
 		- the URI part if different
 		- the method of HTTP protocol used to request is different
 
+Resource instance Lifecycle:
+-----------------------------------
 Servlet creating instance of MyResource and placing it inside a container
 every time new request comes an instance of MyResource is created and once the response is returned the instance is destroyed
 
 MyResource instance is scoped to a request
-
 
 Singleton: an instance of a Resource class is created ONLY once and destroyed when the application is stopped or the server stopped
 
 Session Scoped: For a certain duration an instance will be created and kept alive for a particular client
 
 Request Scoped: Every time a new instance of a Resource type is created for every request
+The RESTful API Resource classes are by default RequestScoped
+Note: That's why it is not a good practice to maintain state of any data inside the resource class
+
+Note: since RESTful APIs generally should not maintain as such any session with the client, hence session scoped instance is not preferred, until and unless you want to have session with the client.
+ 
+
+Generating HTTP response using Response type
+--------------------------------------------------
+ResponseBuilder builder = Response.ok()/.createdAt()/.badRequest()/.notModified()
+Response resp = builder.build();
+or
+Response.status(200).entity(data).build();
+
+create a RESTful application with methods that can be requested via HTTP protocol's GET, POST, PUT, DELETE methods 
+using @GET, @POST, @PUT, @DELETE annotations with methods
+using @QueryParam and @PathParam annotation with method parameters
+using @Path annotation with Resource class and its API methods
+using @Produces and @Consumes annotation with API methods
+
+
+DI injection in Jakarta EE RESTful application (using Jersey):
+-------------------------------------------------------------------
+Working with Database
+------------------------------
+
+
+
+
+
+
 

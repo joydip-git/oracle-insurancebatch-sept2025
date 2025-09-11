@@ -1,0 +1,48 @@
+
+//	@POST
+//	@Path("add")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Person addPerson(Person person) {
+//		if (!people.isEmpty()) {
+//			
+//			Predicate<Person> isPresent = (p)->p.getId() == person.getId();
+//			//Returns whether any elements of this stream match the provided predicate. May not evaluate the predicate on all elements if not necessary for determining the result. If the stream is empty then false is returned and the predicate is not evaluated.
+//			if (people.stream().anyMatch(isPresent)) {				
+//				throw new BadRequestException("a person with " + person.getId() + " already exists");
+//				//return Response.notModified("a person with " + person.getId() + " already exists").build();
+//			}
+//		}
+//
+//		people.add(person);
+//		return person;
+//		//return Response.ok(person).build();
+//	}
+
+//	@POST
+//	@Path("add")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public MyResourceResponse<Person> addPerson(Person person) {
+//		try {
+//			if (!people.isEmpty()) {
+//
+//				Predicate<Person> isPresent = (p) -> p.getId() == person.getId();
+//				if (people.stream().anyMatch(isPresent)) {
+//					return new MyResourceResponse<Person>("person with id: " + person.getId() + " exists", 400, null);
+//				}
+//			}
+//			people.add(person);
+//			return new MyResourceResponse<Person>("person added successfully", 200, person);
+//		} catch (Exception e) {
+//			return new MyResourceResponse<Person>(e.getMessage(), 500, null);
+//		}
+//	}
+
+	
+//	@Path("people")
+//	@GET
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public List<Person> getAll() {
+//		return people;
+//	}
