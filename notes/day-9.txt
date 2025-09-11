@@ -64,3 +64,15 @@ RESTful API:
 		- the URI part if different
 		- the method of HTTP protocol used to request is different
 
+Servlet creating instance of MyResource and placing it inside a container
+every time new request comes an instance of MyResource is created and once the response is returned the instance is destroyed
+
+MyResource instance is scoped to a request
+
+
+Singleton: an instance of a Resource class is created ONLY once and destroyed when the application is stopped or the server stopped
+
+Session Scoped: For a certain duration an instance will be created and kept alive for a particular client
+
+Request Scoped: Every time a new instance of a Resource type is created for every request
+

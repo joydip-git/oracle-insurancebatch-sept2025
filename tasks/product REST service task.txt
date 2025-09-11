@@ -4,3 +4,7 @@ create a new Java file with some name
 
 you need to fetch all records from oracle database table (of your choice) and return the records through an API method in that class
 you need to fetch single record from oracle database table (of your choice) and return the record through an API method in that class
+
+the task is present in the "tasks" folder in GitHub repo
+complete the task with another 30 minutes and then go for lunch by 1 pm
+will start the session by 2 pm
