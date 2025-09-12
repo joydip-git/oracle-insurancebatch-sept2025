@@ -2,9 +2,90 @@ create a new REST application
 delete the MyResource.java file
 create a new Java file with some name
 
-you need to fetch all records from oracle database table (of your choice) and return the records through an API method in that class
-you need to fetch single record from oracle database table (of your choice) and return the record through an API method in that class
+REST Services:
+	Dependency Injection
+	JDBC
 
-the task is present in the "tasks" folder in GitHub repo
-complete the task with another 30 minutes and then go for lunch by 1 pm
-will start the session by 2 pm
+products
+	- product_id (int, pk, not null)
+	- product_name (varchar(50), not null)
+	- product_desc (varchar(500))
+	- product_released_on (date)
+	- price (decimal(18,2), default (0))
+models
+	- Product
+
+controllers
+	- ProductController ("products")
+		GET
+		"all"
+		application/json
+		- getProducts():Response (List<Product>)
+		
+		GET
+		"view/{id}"
+		application/json
+		- getProductById(@PathParam("id") int id): Reponse (Product)
+
+		POST
+		"add"
+		application/json
+		application/json
+		- addProduct(Product p):Reponse (Product)
+
+		PUT
+		"update"
+		application/json
+		application/json
+		- updateProduct(@QueryParam("id") int id, Product p):Response (Product)
+
+		DELETE
+		"delete/{id}"
+		application/json
+		- deleteProduct(@PathParam("id") int id):Response (Product)
+
+		GET
+		"filter"
+		application/json
+		- filterProductsByName(@QueryParam("name") String name):Response (List<Product>)
+
+manager
+	- ManagerContract<T,TPKey>
+		- add(T p) => T
+		- delete(TPKey id) => T
+		- update(TPKey id, T p) => T
+		- fetchAll() => List<T>
+		- fetch(TPKey id) => T
+		- search(String name) => List<T>
+
+	- ProductManager -> ManagerContract<Product,Integer>
+		- add(Product p) => Product
+		- delete(Integer id) => Product
+		- update(Integer id, Product p) => Product
+		- fetchAll() => List<Product>
+		- fetch(int Integer) => Product
+		- search(String name) => List<Product>
+
+		private helper methods
+		- autogenerateId():Integer
+		- sort():List<Product>
+					
+
+repository (data access layer/persistence layer)
+	- RepositoryContract<T,TPKey>
+		- insert(T p) => T
+		- remove(TPKey id) => T
+		- modify(TPKey id, T p) => T
+		- getAll() => List<T>
+		- get(TPKey id) => T
+
+	- ProductRepository -> RepositoryContract<Product,Integer>
+		- insert(Product p) => Product
+		- remove(Integer id) => Product
+		- modify(Integer id, Product p) => Product
+		- getAll() => List<Product>
+		- get(int Integer) => Product
+
+
+
+
