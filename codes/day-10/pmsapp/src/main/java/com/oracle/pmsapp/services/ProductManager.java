@@ -27,50 +27,102 @@ public class ProductManager implements Manager<ProductModel, Integer> {
 		try {
 			if (data == null)
 				throw new NullPointerException("product instance is null");
-			
+
 			if (data.getProductId() <= 0)
 				throw new Exception("product id should be more than zero");
-			
+
 			if (data.getProductName().isBlank() || data.getProductName().isEmpty() || data.getProductName() == null)
 				throw new Exception("product name must be present");
-			
-			return repository.insert(data);
+
+			ProductModel model = repository.insert(data);
+			if (model == null)
+				throw new NullPointerException("the product could not be added");
+
+			return model;
 		} catch (Exception e) {
 			throw e;
 		}
 	}
 
 	@Override
-	public ProductModel delete(Integer id) {
+	public ProductModel delete(Integer id) throws Exception {
 		try {
-			
+			if (id <= 0)
+				throw new Exception("product id should be more than zero");
+
+			ProductModel model = repository.remove(id);
+			if (model == null)
+				throw new NullPointerException("the product with id: " + id + " does not exist");
+
+			return model;
+
 		} catch (Exception e) {
-			// TODO: handle exception
+			throw e;
 		}
 	}
 
 	@Override
-	public ProductModel fetch(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public ProductModel fetch(Integer id) throws Exception {
+		try {
+			ProductModel model = repository.get(id);
+			if (model == null)
+				throw new NullPointerException("the product with id: " + id + " does not exist");
+
+			return model;
+
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	@Override
-	public List<ProductModel> fetchAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ProductModel> fetchAll() throws Exception {
+		try {
+			List<ProductModel> models = repository.getAll();
+			if (models == null || models.isEmpty())
+				throw new Exception("no products found");
+
+			return models
+					.stream()
+					.sorted((p1, p2) -> p1.getProductId() - p2.getProductId())
+					.toList();
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	@Override
-	public ProductModel update(Integer id, ProductModel data) {
-		// TODO Auto-generated method stub
-		return null;
+	public ProductModel update(Integer id, ProductModel data) throws Exception {
+		try {
+			ProductModel model = repository.modify(id, data);
+			if (model == null)
+				throw new NullPointerException("the product with id: " + id + " does not exist");
+
+			return model;
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	@Override
-	public List<ProductModel> searchByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ProductModel> searchByName(String name) throws Exception {
+		try {
+			if(name == null)
+				throw new NullPointerException("name was not passed");
+			
+			List<ProductModel> models = repository.getAll();
+			if (models == null || models.isEmpty())
+				throw new Exception("no products found");
+
+			return models
+					.stream()
+					.filter(p -> p.getProductName().contains(name))
+					.sorted((p1, p2) -> p1.getProductName().compareTo(p2.getProductName()))
+					.toList();
+
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 }
