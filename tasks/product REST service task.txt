@@ -2,6 +2,9 @@ create a new REST application
 delete the MyResource.java file
 create a new Java file with some name
 
+dependencies:
+	Oracle driver
+
 products [database table scgema]
 	- product_id (int, pk, not null)
 	- product_name (varchar(50), not null)
