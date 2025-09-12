@@ -52,9 +52,9 @@ controllers [package]
 		application/json
 		- filterProductsByName(@QueryParam("name") String name):Response (List<Product>)
 
-manager [package] (it is business layer) 
+services [package] (it is business layer) 
 ------------------------------------------
-	- ManagerContract<T,TPKey> [interface]:ManagerContract.java
+	- Manager<T,TPKey> [interface]:Manager.java
 		- add(T p) => T
 		- delete(TPKey id) => T
 		- update(TPKey id, T p) => T
@@ -62,7 +62,7 @@ manager [package] (it is business layer)
 		- fetch(TPKey id) => T
 		- search(String name) => List<T>
 
-	- ProductManager [class]:ProductManager.java -> ManagerContract<Product,Integer>
+	- ProductManager [class]:ProductManager.java -> Manager<Product,Integer>
 		- add(Product p) => Product
 		- delete(Integer id) => Product
 		- update(Integer id, Product p) => Product
