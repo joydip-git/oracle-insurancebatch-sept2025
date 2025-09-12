@@ -16,7 +16,7 @@ src/resources
 	- database.properties with database settings
 
 models [package]
-	- Product [class]: Product.java
+	- ProductModel [class]: ProductModel.java
 
 controllers [package]
 	- ProductController ("products") [class]:ProductController.java
