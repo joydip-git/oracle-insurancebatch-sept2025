@@ -2,21 +2,21 @@ create a new REST application
 delete the MyResource.java file
 create a new Java file with some name
 
-REST Services:
-	Dependency Injection
-	JDBC
-
-products
+products [database table scgema]
 	- product_id (int, pk, not null)
 	- product_name (varchar(50), not null)
 	- product_desc (varchar(500))
 	- product_released_on (date)
 	- price (decimal(18,2), default (0))
-models
-	- Product
 
-controllers
-	- ProductController ("products")
+src/resources
+	- database.properties with database settings
+
+models [package]
+	- Product [class]: Product.java
+
+controllers [package]
+	- ProductController ("products") [class]:ProductController.java
 		GET
 		"all"
 		application/json
@@ -49,8 +49,9 @@ controllers
 		application/json
 		- filterProductsByName(@QueryParam("name") String name):Response (List<Product>)
 
-manager
-	- ManagerContract<T,TPKey>
+manager [package] (it is business layer) 
+------------------------------------------
+	- ManagerContract<T,TPKey> [interface]:ManagerContract.java
 		- add(T p) => T
 		- delete(TPKey id) => T
 		- update(TPKey id, T p) => T
@@ -58,7 +59,7 @@ manager
 		- fetch(TPKey id) => T
 		- search(String name) => List<T>
 
-	- ProductManager -> ManagerContract<Product,Integer>
+	- ProductManager [class]:ProductManager.java -> ManagerContract<Product,Integer>
 		- add(Product p) => Product
 		- delete(Integer id) => Product
 		- update(Integer id, Product p) => Product
@@ -71,15 +72,16 @@ manager
 		- sort():List<Product>
 					
 
-repository (data access layer/persistence layer)
-	- RepositoryContract<T,TPKey>
+repository [package] (it is data access layer/persistence layer/repository layer)
+------------------------------------------------------------------------------------
+	- RepositoryContract<T,TPKey> [interface]:RepositoryContract.java
 		- insert(T p) => T
 		- remove(TPKey id) => T
 		- modify(TPKey id, T p) => T
 		- getAll() => List<T>
 		- get(TPKey id) => T
 
-	- ProductRepository -> RepositoryContract<Product,Integer>
+	- ProductRepository [class]:ProductRepository.java -> RepositoryContract<Product,Integer> 
 		- insert(Product p) => Product
 		- remove(Integer id) => Product
 		- modify(Integer id, Product p) => Product
