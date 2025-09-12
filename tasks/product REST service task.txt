@@ -91,6 +91,12 @@ repository [package] (it is data access layer/persistence layer/repository layer
 		- getAll() => List<Product>
 		- get(int Integer) => Product
 
+	utilities [sub-package]
+		DaoUtility
+			loadDriver
+			createConnection
+			closeConnection
+
 
 
 
