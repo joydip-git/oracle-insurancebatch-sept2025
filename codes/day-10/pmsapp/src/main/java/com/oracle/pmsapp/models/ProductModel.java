@@ -2,7 +2,6 @@ package com.oracle.pmsapp.models;
 
 import java.time.LocalDate;
 
-//public class ProductModel implements Cloneable {
 public class ProductModel {
 	private int productId;
 	private String productName;
@@ -78,9 +77,4 @@ public class ProductModel {
 				+ productDescription + ", productPrice=" + productPrice + ", productReleasedOn=" + productReleasedOn
 				+ ", categoryId=" + categoryId + "]";
 	}
-
-//	@Override
-//	protected Object clone() throws CloneNotSupportedException {
-//		return super.clone();
-//	}
 }

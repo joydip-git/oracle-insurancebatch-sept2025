@@ -1,3 +1,61 @@
 REST Services:
 	Dependency Injection
 	JDBC
+
+
+Resource (or controller)
+other types are considered as services (excluding models/entities/DTOs)
+	- repository
+	- manager
+
+RepositoryContract<TModel,TPKey>
+ProductRepository implements RepositoryContract<ProductModel,Integer>
+OrderRepository implements RepositoryContract<OrderModel,String>
+
+Manager<TModel,TPKey>
+ProductManager implements Manager<ProductModel,Integer>
+OrderManager implements Manager<OrderModel,String>
+
+
+this
+	.bind(ProductRepository.class)
+	.to(new TypeLiteral<RepositoryContract<ProductModel, Integer>>() {});
+
+this
+	.bind(OrderRepository.class)
+	.to(new TypeLiteral<RepositoryContract<OrderModel, String>>() {});
+
+this
+	.bind(ProductManager.class)
+	.to(new TypeLiteral<Manager<ProductModel, Integer>>() {});
+		
+this
+	.bind(OrderManager.class)
+	.to(new TypeLiteral<Manager<OrderModel, String>>() {});
+
+ResourceConfig:
+--------------------------
+ResourceConfig is a core class in the Jersey framework, which is the reference implementation for JAX-RS (Java API for RESTful Web Services). 
+It extends the JAX-RS "Application" class and provides enhanced capabilities for 
+	- configuring and deploying Jersey applications.
+
+Key functions and features of ResourceConfig:
+
+Component Registration: It simplifies the registration of JAX-RS components, including:
+Root resource classes: Classes annotated with @Path that define the entry points for your RESTful services.
+
+Provider classes: Classes implementing JAX-RS or Jersey contract providers (e.g., MessageBodyReader, MessageBodyWriter, ExceptionMapper).
+
+Features: Classes implementing Feature to add custom functionality or configuration to your Jersey application.
+
+Binders: Classes implementing Binder for dependency injection.
+
+Scanning capabilities: 
+ResourceConfig offers advanced mechanisms to automatically discover and register components:
+
+Classpath scanning: It can scan specified packages or the entire classpath for root resource and provider classes.
+
+Package scanning: You can specify a set of package names, and ResourceConfig will automatically find and register JAX-RS components within those packages.
+
+Configuration: It allows for programmatic configuration of various aspects of your Jersey application, such as: Setting properties, Registering instances of components, Applying features.
+

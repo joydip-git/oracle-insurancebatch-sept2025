@@ -9,18 +9,13 @@ import jakarta.inject.Inject;
 
 public class ProductManager implements Manager<ProductModel, Integer> {
 
-	@Inject
 	private RepositoryContract<ProductModel, Integer> repository;
 
-//	@Inject
-//	public ProductManager(RepositoryContract<ProductModel, Integer> repository) {
-//		this.repository = repository;
-//	}
-
+	// DI through constructor
 	@Inject
-//	public void setRepository(RepositoryContract<ProductModel, Integer> repository) {
-//		this.repository = repository;
-//	}
+	public ProductManager(RepositoryContract<ProductModel, Integer> repository) {
+		this.repository = repository;
+	}
 
 	@Override
 	public ProductModel add(ProductModel data) throws Exception {
@@ -82,10 +77,7 @@ public class ProductManager implements Manager<ProductModel, Integer> {
 			if (models == null || models.isEmpty())
 				throw new Exception("no products found");
 
-			return models
-					.stream()
-					.sorted((p1, p2) -> p1.getProductId() - p2.getProductId())
-					.toList();
+			return models.stream().sorted((p1, p2) -> p1.getProductId() - p2.getProductId()).toList();
 		} catch (Exception e) {
 			throw e;
 		}
@@ -107,18 +99,15 @@ public class ProductManager implements Manager<ProductModel, Integer> {
 	@Override
 	public List<ProductModel> searchByName(String name) throws Exception {
 		try {
-			if(name == null)
+			if (name == null)
 				throw new NullPointerException("name was not passed");
-			
+
 			List<ProductModel> models = repository.getAll();
 			if (models == null || models.isEmpty())
 				throw new Exception("no products found");
 
-			return models
-					.stream()
-					.filter(p -> p.getProductName().contains(name))
-					.sorted((p1, p2) -> p1.getProductName().compareTo(p2.getProductName()))
-					.toList();
+			return models.stream().filter(p -> p.getProductName().contains(name))
+					.sorted((p1, p2) -> p1.getProductName().compareTo(p2.getProductName())).toList();
 
 		} catch (Exception e) {
 			throw e;

@@ -1,6 +1,6 @@
 package com.oracle.pmsapp.repository;
 
-//static member import
+import static com.oracle.pmsapp.ApplicationResourceConfiguration.DB_QUERIES;
 import static com.oracle.pmsapp.repository.utilities.DaoUtility.closeConnection;
 import static com.oracle.pmsapp.repository.utilities.DaoUtility.convertRecordToModel;
 import static com.oracle.pmsapp.repository.utilities.DaoUtility.createConnection;
@@ -21,9 +21,12 @@ public class ProductRepository implements RepositoryContract<ProductModel, Integ
 	public ProductModel insert(ProductModel data) throws Exception {
 		Connection connection = null;
 		PreparedStatement statement = null;
-		String insertQuery = "insert into products(product_id,product_name,product_desc,product_price,product_released_on,category_id) values(?,?,?,?,?,?)";
 		int result = 0;
 		try {
+			String insertQuery = DB_QUERIES.getProperty("add_product");
+			if (insertQuery.isEmpty() || insertQuery.isBlank() || insertQuery == null)
+				throw new Exception("no insert query found");
+
 			connection = createConnection();
 
 			statement = connection.prepareStatement(insertQuery);
@@ -49,10 +52,13 @@ public class ProductRepository implements RepositoryContract<ProductModel, Integ
 	public ProductModel remove(Integer id) throws Exception {
 		Connection connection = null;
 		PreparedStatement statement = null;
-		String deleteQuery = "delete from products where product_id=?";
 		int result = 0;
 		ProductModel model = null;
 		try {
+			String deleteQuery = DB_QUERIES.getProperty("delete_product");
+			if (deleteQuery.isEmpty() || deleteQuery.isBlank() || deleteQuery == null)
+				throw new Exception("no delete query found");
+
 			model = get(id);
 
 			connection = createConnection();
@@ -73,9 +79,12 @@ public class ProductRepository implements RepositoryContract<ProductModel, Integ
 	public ProductModel modify(Integer id, ProductModel data) throws Exception {
 		Connection connection = null;
 		PreparedStatement statement = null;
-		String updateQuery = "update products set product_name=?, product_desc=?, product_price=?,product_released_on=?,category_id=? where product_id=?";
 		int result = 0;
 		try {
+			String updateQuery = DB_QUERIES.getProperty("update_product");				
+			if (updateQuery.isEmpty() || updateQuery.isBlank() || updateQuery == null)
+				throw new Exception("no update query found");
+
 			connection = createConnection();
 
 			statement = connection.prepareStatement(updateQuery);
@@ -105,10 +114,13 @@ public class ProductRepository implements RepositoryContract<ProductModel, Integ
 	public ProductModel get(Integer id) throws Exception {
 		Connection connection = null;
 		PreparedStatement statement = null;
-		String fetchQuery = "select product_id as ID, product_name as NAME, product_desc as DESCRIPTION, product_price as PRICE, product_released_on as RELEASE_DATE, category_id as CATEGORY from products where product_id=?";
 		ProductModel model = null;
 		ResultSet result = null;
 		try {
+			String fetchQuery = DB_QUERIES.getProperty("select_product");
+			if (fetchQuery.isEmpty() || fetchQuery.isBlank() || fetchQuery == null)
+				throw new Exception("no select query found");
+			
 			connection = createConnection();
 			statement = connection.prepareStatement(fetchQuery);
 			statement.setInt(1, id);
@@ -130,10 +142,13 @@ public class ProductRepository implements RepositoryContract<ProductModel, Integ
 	public List<ProductModel> getAll() throws Exception {
 		Connection connection = null;
 		Statement statement = null;
-		String fetchQuery = "select product_id as ID, product_name as NAME, product_desc as DESCRIPTION, product_price as PRICE, product_released_on as RELEASE_DATE, category_id as CATEGORY from products";
 		List<ProductModel> models = null;
 		ResultSet result = null;
 		try {
+			String fetchQuery = DB_QUERIES.getProperty("select_all_products");
+			if (fetchQuery.isEmpty() || fetchQuery.isBlank())
+				throw new Exception("no select query found");
+
 			connection = createConnection();
 			statement = connection.createStatement();
 

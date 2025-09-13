@@ -1,5 +1,7 @@
 package com.oracle.pmsapp.repository.utilities;
 
+import static com.oracle.pmsapp.ApplicationResourceConfiguration.DB_SETTINGS;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -8,12 +10,20 @@ import java.sql.SQLException;
 import com.oracle.pmsapp.models.ProductModel;
 
 public class DaoUtility {
-	public static Connection createConnection() throws ClassNotFoundException, SQLException {
+	public static Connection createConnection() throws ClassNotFoundException, SQLException, Exception {
 		loadDriver();
 
-		String url = "";
-		String userName = "";
-		String password = "";
+		String url = DB_SETTINGS.getProperty("url");
+		if (url == null || url.isBlank() || url.isEmpty())
+			throw new Exception("connection string is not found");
+
+		String userName = DB_SETTINGS.getProperty("username");
+		if (userName == null || userName.isBlank() || userName.isEmpty())
+			throw new Exception("user name not found");
+
+		String password = DB_SETTINGS.getProperty("password");
+		if (password == null || password.isBlank() || password.isEmpty())
+			throw new Exception("password not found");
 
 		return DriverManager.getConnection(url, userName, password);
 	}
@@ -34,8 +44,11 @@ public class DaoUtility {
 		return model;
 	}
 
-	private static void loadDriver() throws ClassNotFoundException {
-		String driver = "";
+	private static void loadDriver() throws ClassNotFoundException, Exception {
+		String driver = DB_SETTINGS.getProperty("driver");
+		if (driver.isBlank() || driver.isEmpty() || driver == null)
+			throw new Exception("driver not found");
+
 		Class.forName(driver);
 	}
 }

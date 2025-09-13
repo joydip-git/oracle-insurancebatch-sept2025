@@ -1,0 +1,63 @@
+package com.oracle.pmsapp;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.Properties;
+
+import org.glassfish.jersey.server.ResourceConfig;
+
+public class ApplicationResourceConfiguration extends ResourceConfig {
+	public static final Properties DB_SETTINGS = new Properties();
+	public static final Properties DB_QUERIES = new Properties();
+
+	public ApplicationResourceConfiguration() throws IOException {
+		// Packages will be scanned recursively, including all nested packages.
+		this.packages("com.oracle.pmsapp");
+		this.register(new ApplicationServicesBinderConfiguration());
+		this.loadDbSettings();
+		this.loadDbQueries();
+	}
+	
+	private void loadDbSettings() throws IOException {
+		InputStream stream = null;
+
+		try {
+			Class<?> clsInfo = (Class<?>) this.getClass();
+			// getClassLoader() method returns the instance of the ClassLoader which
+			// will be used to load the current class in the JVM runtime
+			ClassLoader loader = clsInfo.getClassLoader();
+			// getResourceAsStream() method returns an input stream
+			// for reading the specified resource.
+			stream = loader.getResourceAsStream("database.properties");
+			DB_SETTINGS.load(stream);
+		} catch (IOException e) {
+			throw e;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (stream != null)
+				stream.close();
+		}
+	}
+
+	private void loadDbQueries() throws IOException {
+		FileReader reader = null;
+
+		try {
+			Class<ApplicationResourceConfiguration> clsInfo = (Class<ApplicationResourceConfiguration>) this.getClass();
+			ClassLoader loader = clsInfo.getClassLoader();
+			URL pathUrl = loader.getResource("dbquery.properties");
+			reader = new FileReader(pathUrl.getPath());
+			DB_QUERIES.load(reader);
+		} catch (IOException e) {
+			throw e;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (reader != null)
+				reader.close();
+		}
+	}
+}
