@@ -45,6 +45,44 @@ RepositoryContract<ProductModel, Integer> repository =>create an instance of Pod
 
 TypeLiteral => 
 
+TDD and BDD
+Test-Driven Development
+Behavior-Driven Development
+
+JUnit:
+--------------------
+JUnit is a unit testing framework to write and run repeatable automated tests on Java. 
+It provides a robust environment to write, organize, and execute automated tests, ensuring code reliability and repeatability. 
+Its user-friendly annotations and assert methods facilitate the development and running of test cases, making it a foundational tool for Java developers focusing on quality assurance and test-driven development.
+
+JUnit 5: 
+-------------------------
+
+Components of JUnit 5:
+
+JUnit platform: a platform for launching testing framework on the JVM. It also provides the Testing engine API for developing a testing framework which runs on this platform.
+
+JUnit Jupiter: the combination of programming model and extension model for writing unit tests and its extensions. 
+
+JUnit Vintage: provides a Test Engine for running JUnit 3 and 4 based tests on this platform
+
+packages:
+	a. junit-jupiter-api (5.13.4)
+	b. junit-jupiter-engine (5.13.4)
+	c. junit-jupiter-params (5.13.4) => for parameterized test
+
+@FunctionalInterface
+@API(status = STABLE, since = "5.0")
+public interface Executable {
+
+	void execute() throws Throwable;
+
+}
+
+@BeforeEach is used to signal that the annotated method should be executed before each @Test, @RepeatedTest, @ParameterizedTest, @TestFactory, and @TestTemplate method in the current test class.
+
+@AfterEach is used to signal that the annotated method should be executed after each @Test, @RepeatedTest, @ParameterizedTest, @TestFactory, and @TestTemplate method in the current test class.
+
 
 
 
