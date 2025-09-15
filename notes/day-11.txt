@@ -1,0 +1,52 @@
+Jakarta.ws.rs.core
+Application type => Represents the whole RESTful web service application
+
+ResourceConfig => Child class of Application
+		  used to configure resources
+
+in the web.xml file add a new init parameter definition in the <servelet> element
+
+<servlet>
+	.....
+	<init-param>
+		<param-name>jakarte.ws.rs.Appliation<param-name>
+		<param-name>com.oracle.pmspp.AppliationResourceConfiguration<param-name>
+	</init-aram>
+</servlet>
+
+In the RESTful web service application you should create a class inheriting from ResourceConfig
+in that class you should provide code for configuration of resources
+
+class path => the path where all the .class files (created when .java files are compiled by java compiler and they contain byte code) will be present for an application. these class files are loaded into JVM by class loader
+
+Resource files:
+------------------------
+the resource files (such as properties files) if added in the "resources" directory, are also placed in the class path, during compilation
+
+
+Dependency Injection:
+-------------------------------------
+jakarta.inject.Inject => @Inject
+this should be used with a field, constructor or setter or any other method where depdency injection should happen
+
+HK2 (Hundred Kilobyte Kernel) => it is lightweight DI framework which implements Jakarta specification (JSR-330 interfaces) for dependency injection.
+Jersey framework uses this HK2. the package is: jersey-hk2.
+
+It provides a container object where all the dependency (ervice) class instances are created and maintained
+But HK2 uses a type Service Locator to locate all the services (dependencies) in the application.
+
+Whereas there is another type, Binder, in HK2, whose job is to bind the "interface" (which is contract) to the "class" (which implements the contract).
+
+@Inject
+Manager<ProductModel, Integer> manager => create an instance of PoductManager class and pass to he injectee
+
+@Inject
+RepositoryContract<ProductModel, Integer> repository =>create an instance of PoductRepository class and pass to he injectee
+
+TypeLiteral => 
+
+
+
+
+
+

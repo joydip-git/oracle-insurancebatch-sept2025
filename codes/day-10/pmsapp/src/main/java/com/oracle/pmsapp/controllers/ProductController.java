@@ -3,6 +3,8 @@ package com.oracle.pmsapp.controllers;
 import java.net.URI;
 import java.util.List;
 
+//import org.glassfish.hk2.api.ServiceLocator;
+
 import com.oracle.pmsapp.models.ProductModel;
 import com.oracle.pmsapp.services.Manager;
 
@@ -83,6 +85,18 @@ public class ProductController {
 		try {
 			ProductModel model = manager.update(id, data);
 			return Response.ok(model).build();
+		} catch (Exception e) {
+			return Response.serverError().entity(e.getMessage()).build();
+		}
+	}
+	
+	@GET
+	@Path("search/{name}")
+	@Produces("application/json")
+	public Response searchProductsByName(@PathParam("name") String name) {
+		try {
+			List<ProductModel> models = manager.searchByName(name);
+			return Response.ok(models).build();
 		} catch (Exception e) {
 			return Response.serverError().entity(e.getMessage()).build();
 		}

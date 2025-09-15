@@ -46,7 +46,7 @@ public class DaoUtility {
 
 	private static void loadDriver() throws ClassNotFoundException, Exception {
 		String driver = DB_SETTINGS.getProperty("driver");
-		if (driver.isBlank() || driver.isEmpty() || driver == null)
+		if (driver == null || driver.isBlank() || driver.isEmpty())
 			throw new Exception("driver not found");
 
 		Class.forName(driver);

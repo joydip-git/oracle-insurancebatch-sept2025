@@ -9,7 +9,7 @@ import jakarta.inject.Inject;
 
 public class ProductManager implements Manager<ProductModel, Integer> {
 
-	private RepositoryContract<ProductModel, Integer> repository;
+	private final RepositoryContract<ProductModel, Integer> repository;
 
 	// DI through constructor
 	@Inject

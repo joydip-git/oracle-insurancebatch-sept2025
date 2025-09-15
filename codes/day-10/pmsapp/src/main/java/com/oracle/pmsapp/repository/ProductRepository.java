@@ -24,7 +24,7 @@ public class ProductRepository implements RepositoryContract<ProductModel, Integ
 		int result = 0;
 		try {
 			String insertQuery = DB_QUERIES.getProperty("add_product");
-			if (insertQuery.isEmpty() || insertQuery.isBlank() || insertQuery == null)
+			if (insertQuery == null || insertQuery.isEmpty() || insertQuery.isBlank())
 				throw new Exception("no insert query found");
 
 			connection = createConnection();
@@ -56,7 +56,7 @@ public class ProductRepository implements RepositoryContract<ProductModel, Integ
 		ProductModel model = null;
 		try {
 			String deleteQuery = DB_QUERIES.getProperty("delete_product");
-			if (deleteQuery.isEmpty() || deleteQuery.isBlank() || deleteQuery == null)
+			if (deleteQuery == null || deleteQuery.isEmpty() || deleteQuery.isBlank())
 				throw new Exception("no delete query found");
 
 			model = get(id);
@@ -81,8 +81,8 @@ public class ProductRepository implements RepositoryContract<ProductModel, Integ
 		PreparedStatement statement = null;
 		int result = 0;
 		try {
-			String updateQuery = DB_QUERIES.getProperty("update_product");				
-			if (updateQuery.isEmpty() || updateQuery.isBlank() || updateQuery == null)
+			String updateQuery = DB_QUERIES.getProperty("update_product");
+			if (updateQuery == null || updateQuery.isEmpty() || updateQuery.isBlank())
 				throw new Exception("no update query found");
 
 			connection = createConnection();
@@ -118,9 +118,9 @@ public class ProductRepository implements RepositoryContract<ProductModel, Integ
 		ResultSet result = null;
 		try {
 			String fetchQuery = DB_QUERIES.getProperty("select_product");
-			if (fetchQuery.isEmpty() || fetchQuery.isBlank() || fetchQuery == null)
+			if (fetchQuery == null || fetchQuery.isEmpty() || fetchQuery.isBlank())
 				throw new Exception("no select query found");
-			
+
 			connection = createConnection();
 			statement = connection.prepareStatement(fetchQuery);
 			statement.setInt(1, id);
@@ -146,7 +146,7 @@ public class ProductRepository implements RepositoryContract<ProductModel, Integ
 		ResultSet result = null;
 		try {
 			String fetchQuery = DB_QUERIES.getProperty("select_all_products");
-			if (fetchQuery.isEmpty() || fetchQuery.isBlank())
+			if (fetchQuery == null || fetchQuery.isEmpty() || fetchQuery.isBlank())
 				throw new Exception("no select query found");
 
 			connection = createConnection();
