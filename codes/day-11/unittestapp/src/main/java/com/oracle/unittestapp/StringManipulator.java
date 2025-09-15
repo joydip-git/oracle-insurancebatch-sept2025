@@ -2,9 +2,11 @@ package com.oracle.unittestapp;
 
 public class StringManipulator {
 	public String reverse(String value) {
+		//System.out.println(value);
 		try {
 			if (value == null)
 				throw new NullPointerException("the value passed in null");
+			
 			if (value.isEmpty() || value.isBlank())
 				throw new IllegalArgumentException("argument is either blank or empty");
 
@@ -12,6 +14,7 @@ public class StringManipulator {
 			for (int i = value.length() - 1; i >= 0; i--) {
 				reversed += value.charAt(i);
 			}
+			//System.out.println(reversed);
 			return reversed;
 		} catch (IndexOutOfBoundsException e) {
 			throw e;
