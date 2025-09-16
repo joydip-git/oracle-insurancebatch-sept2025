@@ -1,0 +1,72 @@
+create an web application about calculation of salary of all employees of an organization
+
+there are two types of employee in the organization: developer and hr
+
+models folder:
+
+file: developer.js
+
+developer type:
+----------------------
+    attributes
+	- name, id, basic payment, da payment, hra payment, incentive payment, total payment
+    constructors
+	- default and parametrized  
+    methods:
+	- calculateSalary: calculates salary of developer by adding basic, da, hra, incentive and saves that salary in total payment
+		arguments: NA
+		return type: void
+file: hr.js
+hr type:
+-----------------------------
+    attributes
+	- name, id, basic payment, da payment, hra payment, gratuity payment, total payment
+    constructors
+	- default and parametrized
+    methods:
+	- calculateSalary: calculates salary of an hr by adding basic, da, hra, gratuity and saves that salary in total payment
+		arguments: NA
+		return type: void
+
+index.js file =>
+----------------------------------
+you have to create few objects of both developer and hr types
+save them in an array
+iterate through the array and calculate salary of everyone and print the salary along with name and type of employee the person is
+
+1. ask user about the length of the array (how many objects to create and save)
+2. create the array with the given length
+3. create same number of objects by taking the input from user and save every instance in the array
+	a. every time provide a menu to the user (alert method)
+		----MENU---
+		1. developer record
+		2. hr record
+
+	b. ask user to make a choice
+		Enter choice[d/h]: d
+
+	c. ask user to enter every detail about developer/hr [repeat the same for number of records]
+		Enter id: <id>			Enter id: <id>
+		Enter name: <name>		Enter name: <name>
+		Enter Basic: <basic>		Enter Basic: <basic>
+		Enter Da: <da>			Enter Da: <da>
+		Enter Hra: <hra>		Enter Hra: <hra>
+		Enter Incentive: <incentive>	Enter Gratuity: <gratuity>
+
+	d. iterate through the array and calculate salary of everyone and print the salary along with name and type of employee the person is
+
+	anil, a developer gets 10000 as total salary
+	sunil, an hr gets 20000 as total salary 
+	etc.
+
+
+
+
+
+
+
+
+
+
+
+
