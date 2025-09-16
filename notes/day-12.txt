@@ -63,6 +63,64 @@ commenting: single or multi-line -> /* */
 	you can create just a set of styles with a name, but without mentioning any element names or ids and then when you start designing the body of the HTML, you can apply that set of style on any element using 'class' attribute. the class name starts with . (dot)
 using class attribute you can apply more than one CSS class, by separating each CSS class using a single space between them. in case you are applying multiple CSS classes on the same element and if those CSS classes contain common properties, then the value for the common property of the last CSS class will take effect (cascading)
 
+JavaScript:
+-------------------
+scripting language
+dynamic language
+loosely typed language [does not support data typification]
+
+1. in the same HTML file using <script> tag. the script tag can be present in the body or head or simultaneously in the both
+2. in separate JS file (.js) and linking the same with the HTML file using the same script tag and its 'src' attribute
+
+global scope/method: the invisible 'main' method of the JS file. your JS code in the file is actually written inside that global method
+
+data types of JS:
+-----------------------------------
+Boolean, String, Number, Object
+undefined, null, NaN, Infinity
+
+declare variables:
+--------------------
+'var' keyword to declare variable
+the variable can hold value of different data type at different point of time
+var x = 10
+this is why JS is loosely-typed language
+
+compilation of JS:
+-----------------------
+unlike any other programming language, JS does not have a static compilation.
+JS is loaded in the browser when the HTML is loaded in the browser, thanks to the link between the JS and HTML files. then the JS engine/interpreter/compiler takes care of the JS file. It compiles (interprets) the Java code from top to bottom approach line by line and then executes it.
+Hence, JS has runtime compilation. That's why if a variable is declared and assigned with some and then later the same variable is assigned with different value, JS doesn't show any compilation error. during runtime the code is evaluated and then whichever value is assigned last to that variable, is used and stored in a memory block.
+That's why the language is also called dynamic language.
+
+Object in JS:
+-----------------------
+an object in JS is nothing but a collection of keys and values
+value could be anything even a function
+data/value property/key
+method/functional property/key
+
+all members are like 'public', you can access them through reference variable
+then can be accessed through
+	- dot operator
+	- indexer
+
+operators in JS
+-----------------------
+equal and not equal
+a == b, a!=b -> value of both operands are same or not
+
+strict equal and strict not equal
+a === b, a!==b -> value and data type of both operands are same or not
+
+
+
+
+
+
+
+
+
 
 
 
