@@ -68,6 +68,7 @@ JavaScript:
 scripting language
 dynamic language
 loosely typed language [does not support data typification]
+object-based programming language (NOT object-oriented programming language)
 
 1. in the same HTML file using <script> tag. the script tag can be present in the body or head or simultaneously in the both
 2. in separate JS file (.js) and linking the same with the HTML file using the same script tag and its 'src' attribute
@@ -113,7 +114,22 @@ a == b, a!=b -> value of both operands are same or not
 strict equal and strict not equal
 a === b, a!==b -> value and data type of both operands are same or not
 
+DOM (Document Object Model):
+-----------------------------------
+DOM for an HTML file is created by browser and all the DOM APIs (such as Window, Document, Console etc. types and their methods) are part of browser s/w library NOT part of JS library.
 
+JS engine of the browser has access to DOM APIs from the browser s/w library.
+Hence if you write DOM manipulation code from JS file, it will work fine, as the definitions of DOM APIs will be fetched by JS engine from the browser s/w library, whose part the JS engine itself is.
+
+JS engines:
+-----------------------
+1. chrome: V8 
+2. edge/opera: chromium browser
+3. Safari: JS Core (indigo)
+4. Firefox: Spidermonkey
+
+
+JS engine is also written using C++ as the chrome browser
 
 
 
