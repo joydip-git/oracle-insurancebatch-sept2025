@@ -1,0 +1,35 @@
+ /*
+        h2,
+        h3,
+        button {
+            background-color: burlywood;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+        } */
+ /*#mainHeader,
+        #subHeader,
+        #btnClick {
+            background-color: burlywood;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+        }
+            */
+ .common-style {
+     background-color: burlywood;
+     font-family: 'Courier New', Courier, monospace;
+     text-align: center;
+ }
+
+ .button-style {
+     font-size: medium;
+     font-weight: bold;
+     background-color: blueviolet;
+     height: 50px;
+     width: 150px;
+     border-radius: 5px;
+     border-width: 1px;
+     border-style: solid;
+     border-color: blueviolet;
+     padding: 5px;
+     margin-left: 100px;
+ }

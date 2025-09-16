@@ -1,0 +1,69 @@
+Java
+JDBC
+RESTful application
+creating RESTful Application using Jakarta EE and Jersey framework
+creating RESTful application with JDBC and 3 tier architecture 
+Junit
+
+JavaScript and HTML5
+----------------------------
+HTML: Hyper Text Mark-up Language -> used to design a static web page
+JavaScript: the scripting language used in HTML to make the web page dynamic
+
+HTML tags:
+--------------------
+tags wit opening tag but without closing tag -> empty or self-closing tag
+these tags do not contain any other tag as children
+
+<tag-name> <-- parent
+	<inner-tag></inner-tag> <-- child/nested
+	<empty-tag /> <--no child/nested tag
+	<empty-tag>
+</tag-name>
+
+meta -> metadata (information)
+
+Deployment env:
+-----------------------
+web application is hosted in a server machine by a web server s/w, such as Apache Tomcat, IIS (Internet Information Services), NGINX, Vercel etc.
+This servers process the request and sends the response back to the client machine
+these production web servers can host any number of web apps app at a time and uses a 80 generally to host the web apps, with different URL.
+the web app hosted by this type of server, can be requested from any machine.
+
+
+Development env:
+----------------------
+During development time, the web application (with its pages and scripts) can be hosted too, using a web server, known as development web server or application development server, such as Live Server, lite-server, webpack dev server etc.
+these dev servers can host only one web app at a time and uses a random port number other than 80. the web app hosted by this type of server, can be requested only from the same development machine.
+
+Styling -> CSS:
+-----------------
+Cascading Style-sheet is used to style the web page elements
+CSS uses a property-value pair for every style
+property: what you want
+value: the value for the style
+multiple words in a property will be separated by - (hyphen)
+background-color: 'yellow'
+
+commenting: single or multi-line -> /* */
+
+1. in-line style: with the element itself using style attribute. not re-usable.
+
+2. out-line style
+	a. in the same HTML page using <style> tag. this tag can be written inside body or head element or simultaneously at both.
+	b. in a separate CSS file and then link the file with HTML file
+
+	i. element selector: select and mention the name of element(s) to create and apply style. if the element(s) appear multiple times on the page, all of them will be styled in the same way
+
+	ii. id selector: mention the id(s) of html element(s) to create and apply style. mention the id with # symbol. the CSS engine will search for the elements with those id(s) on the documents and apply style on them ONLY
+
+	Note: both element and id selector demands that you decide the elements to apply style, while creating the style set.
+
+	iii. class selector:
+	you can create just a set of styles with a name, but without mentioning any element names or ids and then when you start designing the body of the HTML, you can apply that set of style on any element using 'class' attribute. the class name starts with . (dot)
+using class attribute you can apply more than one CSS class, by separating each CSS class using a single space between them. in case you are applying multiple CSS classes on the same element and if those CSS classes contain common properties, then the value for the common property of the last CSS class will take effect (cascading)
+
+
+
+
+
