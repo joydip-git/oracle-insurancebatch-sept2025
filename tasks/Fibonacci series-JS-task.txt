@@ -1,0 +1,15 @@
+Fibonacci series:
+-----------------------------------------
+In mathematics, the Fibonacci numbers are the numbers in the following integer sequence:
+0,1,1,2,3,5,8,13,21,34,…
+By definition, the first two Fibonacci numbers are 0 and 1, and each subsequent number is the sum of the previous two.
+In mathematical terms, the sequence Fn of Fibonacci numbers is defined by the recurrence relation
+Fn = Fn-1 + Fn-2;   with initial values F0 = 0 and F1 = 1.
+Objective: 
+Understand how to write a recursive function.
+Problem Statement: 
+Write a method 'fibonacci' that takes some 'number' as a parameter and returns the nth Fibonacci number, where we think of the first 1 as the first Fibonacci number. Thus, an invocation of Fibonacci (6) should return 8, and in invocation of Fibonacci (10) should return 55  
+ 
+N		0	1	2	3	4	5	6	7	8	9	10
+Nth Fibonacci	0	1	1	2	3	5	8	13	21	34	55
+
