@@ -1,0 +1,51 @@
+the backend RESTful API application has already een created (pmsapp) using Jersey (Jakarta EE implementation)
+create an web application and send the API requests and display all the products data, add a new product data, delete the data and search for data
+
+following are the details of APIs
+
+get all products:. 
+url: http://localhost:9001/pmsapp/api/products/all
+method: GET
+
+get a product
+url: http://localhost:9001/pmsapp/api/products/view?id=101
+method: GET
+
+search/filter for products
+url: http://localhost:9001/pmsapp/api/products/search/dell
+method: GET
+
+add a new product
+url: http://localhost:9001/pmsapp/api/products/add
+method: POST
+content type: application/json
+request body data: 
+{
+    "categoryId": 3,
+    "productDescription": "new book from paul cohelo",
+    "productId": 103,
+    "productName": "The Alchemist",
+    "productPrice": 6990.0,
+    "productReleasedOn": "2024-07-23"
+}
+
+update an existing product
+url: http://localhost:9001/pmsapp/api/products/edit/103
+method: PUT
+content type: application/json
+request body data: 
+{
+    "categoryId": 3,
+    "productDescription": "new non-fiction book from Paul Cohelo",
+    "productId": 0,
+    "productName": "The Alchemist",
+    "productPrice": 699.0,
+    "productReleasedOn": "2024-01-31"
+}
+
+delete an existing product
+url: http://localhost:9001/pmsapp/api/products/delete/103
+method: DELETE
+
+
+

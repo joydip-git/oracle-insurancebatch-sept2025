@@ -51,8 +51,6 @@ ES7 (or 8) ->
 JS variable hoisting -> no separate scope of variables with same name inside control flow statements
 solution-> use 'let' keyword introduced in ES6 (2015)
 
-
-
 synchronous execution:
 -----------------------
 
@@ -71,6 +69,19 @@ use Promise API of JS (new feature, introduced in 2015, ES6) to take advantage o
 
 pass the task to the constructor of Promise API while creating an instance of the Promise API
 also configure the Promise object returned by your method with "then()", "catch()" and optionally, "finally()" method
-the 
+the task given to the Promise API is execeuted parallely to the main thread, withouty blocking the main thread, but the callbacks passed to the "then"/"catch"/"finally" is/are executed ONLY after all synchronous methods in your code are executed.
+
+Asynchronous HTTP request using "fetch" browser DOM API:
+-----------------------------------------------------------
+https://jsonplaceholder.typicode.com/posts
+
+Response returned by fetch() might contain following types of data
+	- xml data
+	- json data
+	- array buffer data
+	- text data
+	- blob data
+	- form coded data
+
 
 

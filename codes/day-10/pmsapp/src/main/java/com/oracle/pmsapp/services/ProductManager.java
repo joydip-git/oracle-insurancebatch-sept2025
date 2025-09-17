@@ -106,7 +106,7 @@ public class ProductManager implements Manager<ProductModel, Integer> {
 			if (models == null || models.isEmpty())
 				throw new Exception("no products found");
 
-			return models.stream().filter(p -> p.getProductName().contains(name))
+			return models.stream().filter(p -> p.getProductName().toLowerCase().contains(name.toLowerCase()))
 					.sorted((p1, p2) -> p1.getProductName().compareTo(p2.getProductName())).toList();
 
 		} catch (Exception e) {
