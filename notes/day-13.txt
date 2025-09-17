@@ -51,3 +51,26 @@ ES7 (or 8) ->
 JS variable hoisting -> no separate scope of variables with same name inside control flow statements
 solution-> use 'let' keyword introduced in ES6 (2015)
 
+
+
+synchronous execution:
+-----------------------
+
+main()
+	<- -> add()
+	<- -> subtract()
+
+add()
+
+subtract()
+
+asynchronity in JS:
+-------------------------
+JS itself is single threaded. it does not have any API (like Thread class in Java) to create separate threads. But JS runs using JS engine in browser and browser has the capability to use multiple threads. Hence if you write a function in JS and want it to be executed asynchronously, take advantage of the browser capability
+use Promise API of JS (new feature, introduced in 2015, ES6) to take advantage of the browser, which can run a method asynchronously.
+
+pass the task to the constructor of Promise API while creating an instance of the Promise API
+also configure the Promise object returned by your method with "then()", "catch()" and optionally, "finally()" method
+the 
+
+
