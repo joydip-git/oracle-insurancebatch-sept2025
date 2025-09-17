@@ -9,24 +9,47 @@
 
 <body>
     <fieldset>
-        <legend>Employee Information</legend>        
+        <legend>Employee Information</legend>
         <form>
             <div>
                 <label for="radioDev">Developer:&nbsp;</label>
-                <input type="radio" name="employees" id="radioDev">
+                <input type="radio" name="employees" id="radioDev" checked>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <label for="radioHr">Hr: &nbsp;</label>
                 <input type="radio" name="employees" id="radioHr">
+            </div>
+            <div>
+                <label for="txtId">Id: &nbsp;</label>
+                <input type="text" id="txtId" />
             </div>
             <div>
                 <label for="txtName">Name: &nbsp;</label>
                 <input type="text" id="txtName" />
             </div>
             <div>
-                <input type="button" value="Add">
+                <label for="txtBasic">Basic: &nbsp;</label>
+                <input type="text" id="txtBasic" />
+            </div>
+            <div>
+                <label for="txtDa">Da: &nbsp;</label>
+                <input type="text" id="txtDa" />
+            </div>
+            <div>
+                <label for="txtHra">Hra: &nbsp;</label>
+                <input type="text" id="txtHra" />
+            </div>
+            <div>
+                <label for="txtExtra" id="lblExtra">Extra: &nbsp;</label>
+                <input type="text" id="txtExtra" />
+            </div>
+            <div>
+                <input type="button" value="Add" id="btnAdd">
             </div>
         </form>
+        <br>
+        <span id="msgSpan"></span>
     </fieldset>
+    <script src="./src/index.js" type="module"></script>
 </body>
 
 </html>

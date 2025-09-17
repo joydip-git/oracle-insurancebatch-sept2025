@@ -1,4 +1,4 @@
-class Employee {
+export class Employee {
   constructor(id, name, basic, da, hra) {
     this.id = id;
     this.name = name;
