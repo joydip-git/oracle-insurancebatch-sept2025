@@ -1,0 +1,53 @@
+new features in JS:
+----------------------------
+JS -> 1994
+ECMA -> 
+ECMA International is an industry association dedicated to the standardization of information and communication systems
+
+an organization which provides standard guidelines for open source technologies/languages, such as scripting languages
+
+ECMAScript:
+-------------------------
+It is a standard for general-purpose scripting languages, standardized by ECMA International in the document ECMA-262. It is best known as the core language standard upon which JavaScript is based. While "JavaScript" is the commonly used name, especially in web browsers and Node.js environments, "ECMAScript" refers specifically to the standardized core language features, syntax, and built-in objects.
+
+
+ECMA-262/ES1, 	1st edition, June 1997 
+ECMA-262/ES2, 	2nd edition, August 1998
+ECMA-262/ES3, 	3rd edition, December 1999
+ECMA-262/ES4, 	4th edition (not existing)
+ECMA-262/ES5, 	5th edition, December 2009
+ECMA-262/ES5.1  5.1 edition, June 2011
+
+ECMA-262/ES6, 	6th edition, June 2015
+
+ECMA-262/ES7, 	7th edition, June 2016
+ECMA-262/ES8, 	8th edition, June 2017
+ECMA-262/ES9, 	9th edition, June 2018
+ECMA-262/ES10, 	10th edition, June 2019
+ECMA-262/ES11, 	11th edition, June 2020
+ECMA-262/ES12, 	12th edition, June 2021
+ECMA-262/ES13, 	13th edition, June 2022
+ECMA-262/ES14, 	14th edition, June 2023
+ECMA-262/ES15, 	15th edition, June 2024
+ECMA-262/ES16, 	16th edition, June 2025
+
+
+new features:
+--------------------
+ES6 ->
+	const and let keywords
+	arrow function
+	templated string/string interpolation
+	class, extends, constructor and super keywords
+	import and export keywords (ES6 module feature)
+	spread operator
+	rest operator
+	object destructuring
+	promise for asynchronous methods
+
+ES7 (or 8) ->
+	async and await keywords
+	
+JS variable hoisting -> no separate scope of variables with same name inside control flow statements
+solution-> use 'let' keyword introduced in ES6 (2015)
+
