@@ -9,10 +9,10 @@ class App {
         println res  
                */
 
-        JsonParserCls cls = new JsonParserCls()
-        cls.parseJsonData() 
+        JsonParserCls cls = new JsonParserCls();
+        cls.parseJsonData(); 
  
-        HttpRequestManagerCls manager = new HttpRequestManagerCls() 
-        manager.sendGetRequest()   
+        HttpRequestManagerCls manager = new HttpRequestManagerCls();
+        manager.sendGetRequest();
     }
 }
