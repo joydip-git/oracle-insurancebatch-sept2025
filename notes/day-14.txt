@@ -86,9 +86,46 @@ groovy and json
 JsonSlurper -> parses JSON text or reader context into groovy data structures such as, list, map or primitive types int, double ctc.
 
 
-{
-	"name": "joydip"
-	"id":1,
-	"salary":1000,
-	"isManager":false
-}
+"[
+	{
+		"name": "joydip"
+		"id":1,
+		"salary":1000,
+		"isManager":false,
+		"project":{
+			"name": "CITA",
+			"startDate": "2025-09-18"
+		},
+		"teamMembers": [{
+			"name": "anil",
+			"id": 1
+		}]
+	},
+	{
+		"name": "joydip"
+		"id":1,
+		"salary":1000,
+		"isManager":false,
+		"project":{
+			"name": "CITA",
+			"startDate": "2025-09-18"
+		},
+		"teamMembers": [{
+			"name": "anil",
+			"id": 1
+		}]
+}]"
+
+Closure:
+------------------
+open, anonymous block of code which can take arguments, return value and be assigned to a variable
+
+all closures are instance of groovy.lang.Closure class
+
+
+
+
+
+
+
+
