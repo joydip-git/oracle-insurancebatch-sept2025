@@ -1,0 +1,94 @@
+groovy:
+--------------------
+a Java like, but multi-faceted language for the JVM
+released by Oracle
+It aims to provide a Java-like feel and syntax, but with added productivity features. 
+It supports OO and functional paradigms, and offers both static and dynamic natures for strong yet flexible typing. 
+It also supports the creation of powerful scripts and elegant Domain-Specific Languages. 
+It offers bidirectional interoperability with Java classes and libraries. Supports language extensions through in-language macros, AST transformations and meta-programming.
+Groovy first version: 2007
+
+it is JVM based language, means, the groovy code gets compiled into byte code, like Java
+uses ecosystem of Java and its libraries
+supports both dynamic and optional typing as well as strict typing
+object-oriented language as well as scripting language
+
+key characteristics of Groovy:
+-----------------------------------
+1. concise 
+2. closures
+3. metaprogramming: allows you to modify the class and objects at runtime 
+4. DSL support: due to support for metaprogramming, it can easily be used for DSL (Domain Specific Language)
+5. Native XML/JSON processing
+6. Java interoperable
+7. simplified I/O: it provides easy APIs to read data from and write data into file
+8. List and Maps: easy and concise syntax for using list and maps
+
+advantages of Groovy:
+-----------------------
+increase productivity
+less boilerplate code
+excellent scripting support
+easy to learn 
+huge community support
+
+
+Major USP:
+------------------
+Great for writing concise and maintainable tests, and for all your build and automation tasks
+
+Install Groovy:
+------------------------
+1. download the .msi file for windows and install
+or
+use windows package manager "chocolatey" 
+>choco install groovy
+or
+in your application created using maven, in the pom.xml file mention the groovy dependency
+<groupId>org.apache.groovy</groupId>
+<artifactId>groovy</artifactId>
+<version>x.y.z</version>
+
+2. set environment variable:
+------------------------------------
+create a new system environment variable:
+GROOVY_HOME C:\Program Files (X86)\Groovy
+
+in Path variable add this
+%GROOVY_HOME%\bin
+
+or
+directly in the path variable add this
+C:\Program Files (X86)\Groovy\bin
+
+3. to check the installation:
+open terminal (command prompt/powershell) and type
+>groovy -v
+
+4. Groovy integration with editor:
+VS Code/Eclipse
+
+data types:
+----------------------
+byte, short, int, long, float, double, char, Boolean, String
+
+range:
+---------------
+a shorthand syntax for specifying a sequence of values
+generally denoted by first and last values in the sequence
+can be inclusive or exclusive
+1..10 <-inclusive (includes all the values from first to the last)
+1..<10 <- exclusive range (includes all the values except the last)
+
+
+groovy and json
+-------------------------
+JsonSlurper -> parses JSON text or reader context into groovy data structures such as, list, map or primitive types int, double ctc.
+
+
+{
+	"name": "joydip"
+	"id":1,
+	"salary":1000,
+	"isManager":false
+}
